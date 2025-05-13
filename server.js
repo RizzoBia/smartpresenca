@@ -1,7 +1,16 @@
 require('dotenv').config();
+const express = require('express');
+const app = express();
+const routers = require('./src/routers/routers');
 
-const api = require('./src/api');
+// Middleware para JSON
+app.use(express.json());
 
-api.listen(process.env.PORT, () => {
-    console.log(`\n API SmartPresenca Inicializada`);
+// Usando as rotas
+app.use('/', routers);
+
+// Iniciando o servidor
+const PORT = process.env.PORT || 4040;
+app.listen(PORT, () => {
+    console.log(`API INICIALIZADA na porta ${PORT}`);
 });

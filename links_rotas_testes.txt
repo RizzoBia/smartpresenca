@@ -1,0 +1,64 @@
+links rotas para teste
+
+
+-- Alunos --
+
+#List All
+
+Métodos: GET
+URL: http://localhost:4040/students
+
+#List One: GET
+URL: http://localhost:4040/student/ra 
+
+#Create: POST
+URL: http://localhost:4040/student
+body: {
+    "ra": 22035453,
+    "nome": "João Silva",
+    "cpf": "301.301.301-30",
+    "data_nascimento": "2000-01-01",
+    "sexo": "Masculino",
+    "endereco": "Rua A, 123",
+    "cidade_atual": "São João da Boa Vista",
+    "curso": "Engenharia",
+    "bolsa": "Integral"
+}
+
+#Update: PUT
+URL: http://localhost:4040/student/ra
+body: {
+    "nome": "João Silva Atualizado",
+    "cpf": "301.301.301-99",
+    "curso": "Engenharia de Software"
+}
+
+#Delete: DELETE
+URL: http://localhost:4040/student/ra
+
+-- Professores --
+
+#List All
+Métodos: GET
+URL: http://localhost:4040/teachers
+
+#List One: GET
+URL: http://localhost:4040/teacher/rm
+
+#Create: POST
+URL: http://localhost:4040/teacher
+body:{
+    "rm": 124569,
+    "nome": "Ana Beatriz Lima",
+    "cpf": "111.111.111-11",
+    "titulacao": "Mestre"
+}
+
+
+#Update: PUT
+URL: http://localhost:4040/teacher/rm
+body: {
+    "nome": "Ana Beatriz Lima Atualizada",
+    "cpf": "111.111.111-99",
+    "titulacao": "Doutora"
+}
