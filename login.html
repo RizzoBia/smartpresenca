@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="retangulo1"></div>
+    <div class="retangulo2"></div>
+    <div class="retangulo3"></div>
+    <div class="retangulo4"></div>
+
+    <!-- Começo do Login -->
+    <div class="contener">
+
+        <!--Começo logo Unifeob-->
+        <div class="logo">
+            <img src="assets/images/Unifeob.png" alt="Logo da Unifeob">
+        </div>
+        <!--Fim logo Unifeob-->
+
+        <!--Começo das opções-->
+        <div class="login">
+            <input class="cadastro" type="text" placeholder="Digite seu RA ou RM">
+            <br><br>
+            <input class="cadastro" type="password" placeholder="Digite sua Senha">
+            <br><br>
+            <button class="botao">Entrar</button>
+        </div>
+        <!--Fim das opções-->
+
+    </div>
+    <!-- Final do Loging -->
+
+    <script>
+        const API_URL = 'http://localhost:4040';
+
+        document.querySelector('.botao').addEventListener('click', async function () {
+            const identifier = document.querySelectorAll('.cadastro')[0].value;
+            const password = document.querySelectorAll('.cadastro')[1].value;
+
+            if (!identifier || !password) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ identifier, password })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Falha ao fazer login');
+                }
+
+                const data = await response.json();
+
+                // Salvar token e ra no localStorage
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('ra', identifier);
+
+                alert('Login realizado com sucesso!');
+
+                // Redirecionar para frequência
+                window.location.href = 'frontend/pagina-aluno/index.html';
+
+            } catch (error) {
+                console.error('Erro ao fazer login:', error);
+                alert('Erro ao fazer login: ' + error.message);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

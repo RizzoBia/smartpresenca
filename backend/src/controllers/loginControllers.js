@@ -6,8 +6,7 @@ const ROLES = require('../utils/roles');
 // Função para buscar aluno pelo RA
 async function findAlunoByRA(ra) {
     try {
-        const aluno = await knex('Dim_aluno').where({ ra }).first();
-        return aluno;
+        return await knex('Dim_aluno').where({ ra }).first();
     } catch (err) {
         console.error('Erro ao buscar aluno:', err);
         return null;
@@ -17,8 +16,7 @@ async function findAlunoByRA(ra) {
 // Função para buscar professor pelo RM
 async function findProfessorByRM(rm) {
     try {
-        const professor = await knex('Dim_professor').where({ rm }).first();
-        return professor;
+        return await knex('Dim_professor').where({ rm }).first();
     } catch (err) {
         console.error('Erro ao buscar professor:', err);
         return null;
@@ -26,32 +24,52 @@ async function findProfessorByRM(rm) {
 }
 
 async function login(req, res) {
-    const { identifier, password, role } = req.body;
+    const { identifier, password } = req.body;
 
-    let user;
+    let user = null;
+    let role = null;
+    let userId = null;
 
-    if (role === ROLES.ALUNO) {
-        user = await findAlunoByRA(identifier);
-    } else if (role === ROLES.PROFESSOR) {
-        user = await findProfessorByRM(identifier);
-    } else if (role === ROLES.ADMIN) {
-        user = await knex('admins').where({ username: identifier }).first();
-    } else {
-        return res.status(400).json({ message: 'Role inválida' });
+    // 1. Tenta como admin
+    user = await knex('admins').where({ username: identifier }).first();
+    if (user) {
+        role = ROLES.ADMIN;
+        userId = user.id_admin; // ajuste conforme seu campo real
     }
 
+    // 2. Se não achou, tenta como professor
+    if (!user) {
+        user = await findProfessorByRM(identifier);
+        if (user) {
+            role = ROLES.PROFESSOR;
+            userId = user.idprofessor;
+        }
+    }
+
+    // 3. Se não achou, tenta como aluno
+    if (!user) {
+        user = await findAlunoByRA(identifier);
+        if (user) {
+            role = ROLES.ALUNO;
+            userId = user.id_aluno;
+        }
+    }
+
+    // 4. Se ainda não achou → erro
     if (!user) {
         return res.status(400).json({ message: 'Usuário não encontrado' });
     }
 
+    // 5. Confere a senha
     const match = await comparePassword(password, user.senha);
     if (!match) {
         return res.status(400).json({ message: 'Senha incorreta' });
     }
 
+    // 6. Gera o token
     const tokenPayload = {
-        id: user.id_aluno || user.idprofessor || user.id,
-        role: role
+        id: userId,
+        role
     };
 
     const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '1h' });

@@ -6,7 +6,7 @@ const studentsControllers = require('../controllers/studentsControllers');
 const teachersControllers = require('../controllers/teachersControllers');
 const presencaController = require('../controllers/presencaControllers');
 const userController = require('../controllers/userControllers');
-
+const frequenciaController = require('../controllers/frequenciaControllers');
 const { authorize } = require('../middleware/auth_unificado');  // atenção: "middlewareS" ou "middleware"
 
 router.post('/login', loginControllers.login);
@@ -31,9 +31,10 @@ router.put('/presenca/:id', authorize(['professor', 'admin']), presencaControlle
 // Rota para perfil do usuário autenticado
 router.get('/me', authorize(['aluno', 'professor', 'admin']), userController.profile);
 
-router.post('/presenca', authorize(['professor']), presencaController.create);
-router.get('/presenca/:ra', authorize(['admin', 'professor', 'aluno']), presencaController.getByAluno);
+router.post('/presenca', presencaController.create);
+router.get('/frequencia/:ra', authorize(['admin', 'professor', 'aluno']), presencaController.getByAluno);
 router.put('/presenca/:id', authorize(['professor']), presencaController.update);
 
+router.get('/frequencia/:ra', authorize(['aluno', 'professor', 'admin']), frequenciaController.getFrequenciaByRA);
 
 module.exports = router;
