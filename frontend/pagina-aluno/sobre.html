@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Estudante - UNIFEOB</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo-icon">SP</div>
+                <div class="logo-text">SmartPresença</div>
+            </div>
+
+            <div class="header-right">
+                <div class="notification" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <div class="notification-badge">3</div>
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Bem-vindo(a), Usuário</span>
+                </div>
+                <div class="logout">
+                    <a href="login.html" title="Sair">Sair</a>
+                </div>
+                <div class="header-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-wrapper">
+            <!-- Sidebar -->
+            <nav class="sidebar" aria-label="Menu lateral">
+                <div class="sidebar-nav">
+                    <a href="index.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="grade.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Grade Horária</span>
+                    </a>
+                    <a href="frequencia.html" class="nav-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Frequencia</span>
+                    </a>
+                    <a href="qrcode.html" class="nav-item">
+                        <i class="fas fa-qrcode"></i>
+                        <span>Escanear QR Code</span>
+                    </a>
+                    <a href="sobre.html" class="nav-item active">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Main content area -->
+            <main class="main-content">
+                <div class="welcome-section">
+                    <h1>Olá, Gabriel!</h1>
+                    <div class="status-info">
+                    </div>
+                </div>
+
+
+                <section id="sobre" class="sobre-container">
+                    <h2>Sobre a Smartpresença</h2>
+                    <p>
+                        A <strong>Smartpresença</strong> é um projeto desenvolvido por alunos da universidade
+                        <strong>UNIFEOB</strong> com o objetivo de tornar mais prático e eficiente o controle de
+                        presença nas aulas.
+                    </p>
+                    <p>
+                        A ideia principal é utilizar a tecnologia a favor da educação. Funciona assim: o professor gera
+                        um código, e o aluno, ao inserir esse código, recebe um <strong>QR Code</strong>. Esse QR Code
+                        será utilizado para marcar presença nas aulas.
+                    </p>
+                    <p>
+                        Com o uso de câmeras instaladas nas salas, o sistema identifica os QR Codes apresentados pelos
+                        alunos e faz a contagem automática das presenças. Isso evita fraudes e torna todo o processo
+                        mais rápido e moderno.
+                    </p>
+                    <p>
+                        O projeto surgiu como uma iniciativa prática dentro do curso, buscando aplicar na vida real os
+                        conhecimentos adquiridos e, ao mesmo tempo, oferecer uma solução inovadora para a instituição.
+                    </p>
+                </section>

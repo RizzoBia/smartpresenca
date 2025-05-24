@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Estudante - UNIFEOB</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo-icon">SP</div>
+                <div class="logo-text">SmartPresença</div>
+            </div>
+
+            <div class="header-right">
+                <div class="notification" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <div class="notification-badge">3</div>
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Bem-vindo(a), Usuário</span>
+                </div>
+                <div class="logout">
+                    <a href="login.html" title="Sair">Sair</a>
+                </div>
+                <div class="header-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-wrapper">
+            <!-- Sidebar -->
+            <nav class="sidebar" aria-label="Menu lateral">
+                <div class="sidebar-nav">
+                    <a href="index.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="grade.html" class="nav-item active">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Grade Horária</span>
+                    </a>
+                    <a href="frequencia.html" class="nav-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Frequencia</span>
+                    </a>
+                    <a href="qrcode.html" class="nav-item">
+                        <i class="fas fa-qrcode"></i>
+                        <span>Escanear QR Code</span>
+                    </a>
+                    <a href="sobre.html" class="nav-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Main content area -->
+            <main class="main-content">
+                <div class="welcome-section">
+                    <h1>Olá, Gabriel!</h1>
+                    <div class="status-info">
+                        <p class="semester-info">Abaixo você consegue verificar sua <strong>GRADE HORÁRIA</strong>.
+                    </div>
+                </div>
+
+                <section id="grade-horaria" class="grade-horaria">
+                    <h2>Grade Horária - Desenvolvimento de Aplicação Web</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Horário</th>
+                                <th>Segunda</th>
+                                <th>Terça</th>
+                                <th>Quarta</th>
+                                <th>Quinta</th>
+                                <th>Sexta</th>
+                                <th>Sábado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>19h40</td>
+                                <td rowspan="3">Desenvolvimento de Interfaces de Usuário para Web</td>
+                                <td rowspan="3">Computação em Nuvem</td>
+                                <td rowspan="3">Tecnologias para Desenvolvimento Web</td>
+                                <td rowspan="3">Integração de Dados</td>
+                                <td rowspan="3">Projeto Integrado<br>Desenvolvimento de Aplicação Web</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>20h30</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>21h40</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>

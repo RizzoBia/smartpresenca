@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal do Estudante - UNIFEOB</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style-presencas.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo-icon">SP</div>
+                <div class="logo-text">SmartPresença</div>
+            </div>
+
+            <div class="header-right">
+                <div class="notification" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <div class="notification-badge">3</div>
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Bem-vindo(a), Usuário</span>
+                </div>
+                <div class="logout">
+                    <a href="login.html" title="Sair">Sair</a>
+                </div>
+                <div class="header-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-wrapper">
+            <!-- Sidebar -->
+            <nav class="sidebar" aria-label="Menu lateral">
+                <div class="sidebar-nav">
+                    <a href="index.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="grade.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Grade Horária</span>
+                    </a>
+                    <a href="frequencia.html" class="nav-item active">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Frequencia</span>
+                    </a>
+                    <a href="qrcode.html" class="nav-item">
+                        <i class="fas fa-qrcode"></i>
+                        <span>Escanear QR Code</span>
+                    </a>
+                    <a href="sobre.html" class="nav-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Main content area -->
+            <main class="main-content">
+                <div class="welcome-section">
+                    <h1>Olá, Gabriel!</h1>
+                    <div class="status-info">
+                        <p class="semester-info">Abaixo você consegue verificar suas <strong>PRESENÇAS/FALTAS</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="summary-cards">
+                    <div class="card">
+                        <div class="card-title">Taxa de Presença</div>
+                        <div class="card-value">87.5% <span class="card-percentage percentage-positive">+2.3%</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Total de Aulas</div>
+                        <div class="card-value">124</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Presenças</div>
+                        <div class="card-value">108</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Faltas</div>
+                        <div class="card-value">16</div>
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <select class="filter-select">
+                        <option value="">Todos os Semestres</option>
+                        <option value="2025.1" selected>2025.1</option>
+                        <option value="2024.2">2024.2</option>
+                        <option value="2024.1">2024.1</option>
+                    </select>
+                    <select class="filter-select">
+                        <option value="">Todas as Matérias</option>
+                        <option value="mat1">Cálculo I</option>
+                        <option value="mat2">Programação Web</option>
+                        <option value="mat3">Banco de Dados</option>
+                        <option value="mat4">Estrutura de Dados</option>
+                    </select>
+                </div>
+
+                <div class="tabs">
+                    <div class="tab active" data-tab="overview">Visão Geral</div>
+                    <div class="tab" data-tab="subjects">Por Matéria</div>
+                    <div class="tab" data-tab="calendar">Calendário</div>
+                    <div class="tab" data-tab="details">Detalhes</div>
+                </div>
+
+                <div id="overview" class="tab-content active">
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-title">Cálculo I</div>
+                            <div class="status status-present">87.5% de presença</div>
+                        </div>
+                        <div class="attendance-bar">
+                            <div class="attendance-fill" style="width: 87.5%"></div>
+                        </div>
+                        <div class="attendance-details">
+                            <span>21/24 aulas</span>
+                            <span>3 faltas</span>
+                        </div>
+                    </div>
+
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-title">Programação Web</div>
+                            <div class="status status-present">100% de presença</div>
+                        </div>
+                        <div class="attendance-bar">
+                            <div class="attendance-fill" style="width: 100%"></div>
+                        </div>
+                        <div class="attendance-details">
+                            <span>30/30 aulas</span>
+                            <span>0 faltas</span>
+                        </div>
+                    </div>
+
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-title">Banco de Dados</div>
+                            <div class="status status-warning">78% de presença</div>
+                        </div>
+                        <div class="attendance-bar attendance-warning">
+                            <div class="attendance-fill" style="width: 78%"></div>
+                        </div>
+                        <div class="attendance-details">
+                            <span>25/32 aulas</span>
+                            <span>7 faltas</span>
+                        </div>
+                    </div>
+
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-title">Estrutura de Dados</div>
+                            <div class="status status-warning">75% de presença</div>
+                        </div>
+                        <div class="attendance-bar attendance-warning">
+                            <div class="attendance-fill" style="width: 75%"></div>
+                        </div>
+                        <div class="attendance-details">
+                            <span>27/36 aulas</span>
+                            <span>9 faltas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="subjects" class="tab-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Matéria</th>
+                                <th>Professor</th>
+                                <th>Total de Aulas</th>
+                                <th>Presenças</th>
+                                <th>Faltas</th>
+                                <th>Taxa de Presença</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cálculo I</td>
+                                <td>Prof. Mateus Silva</td>
+                                <td>24</td>
+                                <td>21</td>
+                                <td>3</td>
+                                <td>87.5%</td>
+                                <td><span class="status status-present">Aprovado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Programação Web</td>
+                                <td>Profa. Ana Souza</td>
+                                <td>30</td>
+                                <td>30</td>
+                                <td>0</td>
+                                <td>100%</td>
+                                <td><span class="status status-present">Aprovado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Banco de Dados</td>
+                                <td>Prof. Carlos Oliveira</td>
+                                <td>32</td>
+                                <td>25</td>
+                                <td>7</td>
+                                <td>78%</td>
+                                <td><span class="status status-warning">Alerta</span></td>
+                            </tr>
+                            <tr>
+                                <td>Estrutura de Dados</td>
+                                <td>Prof. Roberto Almeida</td>
+                                <td>36</td>
+                                <td>27</td>
+                                <td>9</td>
+                                <td>75%</td>
+                                <td><span class="status status-warning">Alerta</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--
+                <div id="calendar" class="tab-content">
+                    <!-- Aqui ficaria o calendário -->
+                <!--</div>
+                -->
+
+                <div id="details" class="tab-content">
+                    <p>Detalhes adicionais das presenças podem ser exibidos aqui.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="presencas.js"></script>
+</body>
+
+</html>

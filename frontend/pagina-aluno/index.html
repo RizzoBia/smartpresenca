@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UniPresence - Painel Inicial</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo-icon">SP</div>
+                <div class="logo-text">SmartPresença</div>
+            </div>
+
+            <div class="header-right">
+                <div class="notification" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <div class="notification-badge">3</div>
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Bem-vindo(a), Usuário</span>
+                </div>
+                <div class="logout">
+                    <a href="login.html" title="Sair">Sair</a>
+                </div>
+                <div class="header-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Wrapper -->
+        <div class="page-wrapper">
+            <!-- Sidebar -->
+            <nav class="sidebar" aria-label="Menu lateral">
+                <div class="sidebar-nav">
+                    <a href="index.html" class="nav-item active">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="grade.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Grade Horária</span>
+                    </a>
+                    <a href="frequencia.html" class="nav-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Frequencia</span>
+                    </a>
+                    <a href="qrcode.html" class="nav-item">
+                        <i class="fas fa-qrcode"></i>
+                        <span>Escanear QR Code</span>
+                    </a>
+                    <a href="sobre.html" class="nav-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <section class="welcome-section">
+                    <h1>Painel do Aluno</h1>
+                    <div class="status-info">
+                        <div class="semester-info"><strong>Semestre Atual:</strong> 1º semestre de 2025</div>
+                        <div class="user-status"><strong>Status:</strong> Matriculado</div>
+                    </div>
+                </section>
+
+                <section class="card-grid">
+                    <a href="presencas.html" class="card presencas">
+                        <div class="card-content">
+                            <h2>Presenças</h2>
+                            <p>Veja as aulas em que você marcou presença.</p>
+                        </div>
+                    </a>
+                    <a href="qrcode.html" class="card qrcode">
+                        <div class="card-content">
+                            <h2>QR Code</h2>
+                            <p>Escaneie o QR Code para registrar sua presença.</p>
+                        </div>
+                    </a>
+                    <a href="grade.html" class="card grade">
+                        <div class="card-content">
+                            <h2>Grade Horária</h2>
+                            <p>Consulte sua grade de aulas atualizada.</p>
+                        </div>
+                    </a>
+                    <a href="sobre.html" class="card faltas">
+                        <div class="card-content">
+                            <h2>Sobre</h2>
+                            <p>Saiba mais sobre a SmartPresença.</p>
+                        </div>
+                    </a>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
