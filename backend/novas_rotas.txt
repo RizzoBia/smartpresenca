@@ -1,0 +1,44 @@
+login: http://localhost:4040/login
+
+POST
+
+{
+  "identifier": "admin",
+  "password": "senha123",
+  "role": "admin"
+}
+
+
+{
+  "identifier": 555555,        // o RM que você cadastrou
+  "password": "senha123",      // ou a senha que você gerou o hash
+  "role": "professor"
+}
+
+-------------------------------------------------------------------
+
+
+-- criar Professores
+INSERT INTO Dim_professor (nome, cpf, titulacao, rm, senha) 
+VALUES ('Professor Teste', '555.555.555-55', 'Mestre', 555555, 'senha_hash_aqui')
+
+
+-----------------------------------------------------------------------
+CRIAR PRESENCA
+
+POST:
+http://localhost:4040/presenca
+
+{
+  "ra": 22035453,
+  "id_disciplina": 1,
+  "id_turma": 1,
+  "id_tempo": 1,
+  "rm": 555555,                
+  "id_localizacao": 1,
+  "data": "2025-05-21",
+  "presente": true
+}
+
+
+

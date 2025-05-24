@@ -24,7 +24,7 @@ class StudentsControllers {
     async create(req, res) {
         try {
             const { nome, cpf, data_nascimento, sexo, endereco, cidade_atual, curso, bolsa, ra } = req.body;
-            await knex('Dim_aluno').insert({ nome, cpf, data_nascimento, sexo, endereco, cidade_atual, curso, bolsa, ra });
+            await knex('Dim_aluno').insert({ nome, cpf, data_nascimento, sexo, endereco, cidade_atual, curso, bolsa, ra, senha });
             res.status(201).json({ success: true, message: 'Aluno cadastrado com sucesso' });
         } catch (error) {
             res.status(500).json({ success: false, message: 'Erro ao cadastrar aluno', error });
