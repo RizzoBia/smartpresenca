@@ -1,6 +1,8 @@
 require('dotenv').config();
 
 const knex = require('../config/data');
+const { hashPassword } = require('../utils/hash');
+
 
 class StudentsControllers {
     async listAll(req, res) {
@@ -23,14 +25,15 @@ class StudentsControllers {
 
     async create(req, res) {
         try {
-            const { nome, cpf, data_nascimento, sexo, endereco, cidade_atual, curso, bolsa, ra } = req.body;
-            await knex('Dim_aluno').insert({ nome, cpf, data_nascimento, sexo, endereco, cidade_atual, curso, bolsa, ra, senha });
+            const { nome, cpf, data_nascimento, sexo, endereco, cidade_atual, curso, bolsa, ra, senha } = req.body;
+            const hashedPassword = await hashPassword(senha);
+            await knex('Dim_aluno').insert({ nome, cpf, data_nascimento, sexo, endereco, cidade_atual, curso, bolsa, ra, senha: hashedPassword });
             res.status(201).json({ success: true, message: 'Aluno cadastrado com sucesso' });
         } catch (error) {
-            res.status(500).json({ success: false, message: 'Erro ao cadastrar aluno', error });
+            console.error('Erro ao cadastrar aluno:', error);
+            res.status(500).json({ success: false, message: 'Erro ao cadastrar aluno', error: error.message });
         }
     }
-
     async update(req, res) {
         try {
             const { nome, cpf, data_nascimento, sexo, endereco, cidade_atual, curso, bolsa } = req.body;

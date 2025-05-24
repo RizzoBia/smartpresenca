@@ -40,20 +40,19 @@ async function getByAluno(req, res) {
     try {
         const { ra } = req.params;
 
-        // Buscar aluno pelo RA
-        const aluno = await knex('Dim_aluno').where({ ra }).first();
-        if (!aluno) {
-            return res.status(404).json({ message: 'Aluno não encontrado pelo RA.' });
+        const frequencia = await knex('view_frequencia_aluno').where({ ra });
+
+        if (frequencia.length === 0) {
+            return res.status(404).json({ message: 'Nenhum dado de frequência encontrado para este RA.' });
         }
 
-        const presencas = await knex('Fato_presenca').where({ id_aluno: aluno.id_aluno });
-
-        res.json(presencas);
+        res.json(frequencia);
     } catch (err) {
-        console.error('Erro ao consultar presença:', err);
-        res.status(500).json({ message: 'Erro ao consultar presença' });
+        console.error('Erro ao consultar frequência:', err);
+        res.status(500).json({ message: 'Erro ao consultar frequência' });
     }
 }
+
 
 // Atualizar presença
 async function update(req, res) {

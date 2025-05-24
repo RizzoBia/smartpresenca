@@ -42,3 +42,7 @@ http://localhost:4040/presenca
 
 
 
+{
+  "identifier": 21210303,        
+  "password": "123456"    
+}
