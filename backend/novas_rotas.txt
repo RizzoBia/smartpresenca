@@ -10,8 +10,8 @@ POST
 
 
 {
-  "identifier": 555555,        // o RM que você cadastrou
-  "password": "senha123",      // ou a senha que você gerou o hash
+  "identifier": 555555,        
+  "password": "senha123",      
   "role": "professor"
 }
 
