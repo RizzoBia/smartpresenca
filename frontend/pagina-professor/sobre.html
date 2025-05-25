@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal do Estudante - UNIFEOB</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/frontend/pagina-professor/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -63,43 +63,43 @@
                 </div>
             </nav>
 
-                <section id="sobre" class="sobre-container">
-                    <h2>Sobre a Smartpresença</h2>
-                    <p>
-                        A <strong>Smartpresença</strong> é um projeto desenvolvido por alunos da universidade
-                        <strong>UNIFEOB</strong> com o objetivo de tornar mais prático e eficiente o controle de
-                        presença nas aulas.
-                    </p>
-                    <p>
-                        A ideia principal é utilizar a tecnologia a favor da educação. Funciona assim: o professor gera
-                        um código, e o aluno, ao inserir esse código, recebe um <strong>QR Code</strong>. Esse QR Code
-                        será utilizado para marcar presença nas aulas.
-                    </p>
-                    <p>
-                        Com o uso de câmeras instaladas nas salas, o sistema identifica os QR Codes apresentados pelos
-                        alunos e faz a contagem automática das presenças. Isso evita fraudes e torna todo o processo
-                        mais rápido e moderno.
-                    </p>
-                    <p>
-                        O projeto surgiu como uma iniciativa prática dentro do curso, buscando aplicar na vida real os
-                        conhecimentos adquiridos e, ao mesmo tempo, oferecer uma solução inovadora para a instituição.
-                    </p>
-                </section>
+            <section id="sobre" class="sobre-container">
+                <h2>Sobre a Smartpresença</h2>
+                <p>
+                    A <strong>Smartpresença</strong> é um projeto desenvolvido por alunos da universidade
+                    <strong>UNIFEOB</strong> com o objetivo de tornar mais prático e eficiente o controle de
+                    presença nas aulas.
+                </p>
+                <p>
+                    A ideia principal é utilizar a tecnologia a favor da educação. Funciona assim: o professor gera
+                    um código, e o aluno, ao inserir esse código, recebe um <strong>QR Code</strong>. Esse QR Code
+                    será utilizado para marcar presença nas aulas.
+                </p>
+                <p>
+                    Com o uso de câmeras instaladas nas salas, o sistema identifica os QR Codes apresentados pelos
+                    alunos e faz a contagem automática das presenças. Isso evita fraudes e torna todo o processo
+                    mais rápido e moderno.
+                </p>
+                <p>
+                    O projeto surgiu como uma iniciativa prática dentro do curso, buscando aplicar na vida real os
+                    conhecimentos adquiridos e, ao mesmo tempo, oferecer uma solução inovadora para a instituição.
+                </p>
+            </section>
             </main>
         </div>
     </div>
 
     <script>
         // Menu toggle para mobile
-        document.querySelector('.header-menu-toggle').addEventListener('click', function() {
+        document.querySelector('.header-menu-toggle').addEventListener('click', function () {
             document.querySelector('.sidebar').classList.toggle('active');
         });
 
         // Fechar sidebar quando clicar fora (mobile)
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             const sidebar = document.querySelector('.sidebar');
             const toggle = document.querySelector('.header-menu-toggle');
-            
+
             if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
                 sidebar.classList.remove('active');
             }
