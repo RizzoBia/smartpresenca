@@ -12,7 +12,6 @@
 
 <body>
     <div class="container">
-        <!-- Header with logo and user info -->
         <header class="header">
             <div class="header-left">
                 <div class="logo-icon">U</div>
@@ -64,7 +63,7 @@
                     </a>
                 </div>
             </nav>
-        </header>
+            </header>
 
             <!-- Main content area -->
             <main class="main-content">
@@ -183,7 +182,7 @@
                 "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira",
                 "Quinta-feira", "Sexta-feira", "Sábado"
             ];
-            
+
             const classes = {
                 1: {
                     subject: "Programação Orientada a Objetos",
@@ -192,7 +191,7 @@
                 },
                 2: {
                     subject: "Banco de Dados I",
-                    code: "BD001 - Turma B", 
+                    code: "BD001 - Turma B",
                     location: "Lab 03"
                 },
                 3: {
@@ -211,34 +210,34 @@
                     location: "Lab 01"
                 }
             };
-            
+
             const hoje = new Date();
             const diaSemana = hoje.getDay(); // 0 = Sunday, 1 = Monday, etc.
-            
+
             // Display current date
             const dia = hoje.getDate();
             const mes = hoje.getMonth();
             const ano = hoje.getFullYear();
-            
+
             const mesesAno = [
                 "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
                 "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
             ];
-            
+
             const todayAlert = document.getElementById('today-alert');
             const todayClass = document.getElementById('today-class');
-            
+
             if (diaSemana > 0 && diaSemana < 6) {
                 // It's a weekday
                 const todayClassInfo = classes[diaSemana];
-                
+
                 // Set text for today's class
                 todayClass.innerHTML = `
                     <strong>${diasSemana[diaSemana]}, ${dia} de ${mesesAno[mes]} de ${ano}</strong><br>
                     ${todayClassInfo.subject} (${todayClassInfo.code})<br>
                     ${todayClassInfo.location} | 19:40 - 22:30
                 `;
-                
+
                 // Highlight current day in table
                 const rows = document.querySelectorAll('#schedule-body tr');
                 rows.forEach(row => {
@@ -246,14 +245,14 @@
                         row.classList.add('current-day');
                     }
                 });
-                
+
             } else {
                 // It's weekend
                 todayClass.innerHTML = `
                     <strong>${diasSemana[diaSemana]}, ${dia} de ${mesesAno[mes]} de ${ano}</strong><br>
                     Não há aulas programadas para hoje. Aproveite seu fim de semana!
                 `;
-                
+
                 // Change alert style for weekend
                 todayAlert.classList.add('weekend');
                 document.querySelector('.today-alert i').className = 'fas fa-calendar-times';
@@ -261,7 +260,7 @@
         }
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             getTodayClass();
         });
     </script>
