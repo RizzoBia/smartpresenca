@@ -25,7 +25,7 @@
                 </div>
                 <div class="user-info">
                     <i class="fas fa-user-circle"></i>
-                    <span>Bem-vindo(a), Usuário</span>
+                    <span>Usuário</span>
                 </div>
                 <div class="logout">
                     <a href="login.html" title="Sair">Sair</a>
@@ -65,45 +65,203 @@
 
             <!-- Main content area -->
             <main class="main-content">
-                <div class="welcome-section">
-                    <h1>Olá, Gabriel!</h1>
-                    <div class="status-info">
-                        <p class="semester-info">Abaixo você consegue verificar sua <strong>GRADE HORÁRIA</strong>.
+                <h1 class="page-title">Grade Horária - Aluno</h1>
+
+                <!-- Today's Alert -->
+                <div class="today-alert" id="today-alert">
+                    <i class="fas fa-calendar-check"></i>
+                    <div class="today-info">
+                        <h3>Sua aula de hoje</h3>
+                        <p id="today-class">Carregando...</p>
                     </div>
                 </div>
 
-                <section id="grade-horaria" class="grade-horaria">
-                    <h2>Grade Horária - Desenvolvimento de Aplicação Web</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Horário</th>
-                                <th>Segunda</th>
-                                <th>Terça</th>
-                                <th>Quarta</th>
-                                <th>Quinta</th>
-                                <th>Sexta</th>
-                                <th>Sábado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>19h40</td>
-                                <td rowspan="3">Desenvolvimento de Interfaces de Usuário para Web</td>
-                                <td rowspan="3">Computação em Nuvem</td>
-                                <td rowspan="3">Tecnologias para Desenvolvimento Web</td>
-                                <td rowspan="3">Integração de Dados</td>
-                                <td rowspan="3">Projeto Integrado<br>Desenvolvimento de Aplicação Web</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>20h30</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>21h40</td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
+                <!-- Schedule Table -->
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Dia da Semana</th>
+                            <th>Horário</th>
+                            <th>Disciplina</th>
+                            <th>Local</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-body">
+                        <tr data-day="1">
+                            <td class="day-column">Segunda-feira</td>
+                            <td class="time-column">19:40 - 22:30</td>
+                            <td class="subject-column">
+                                <div class="subject-name">Desenvolvimento de Interfaces de Usuário para Web</div>
+                                <!-- <div class="subject-code">POO001 - Turma A</div> -->
+                            </td>
+                            <td class="location-column">
+                                <div class="location-info">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Lab 01</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-day="2">
+                            <td class="day-column">Terça-feira</td>
+                            <td class="time-column">19:40 - 22:30</td>
+                            <td class="subject-column">
+                                <div class="subject-name">Computação em Nuvem</div>
+                                <!-- <div class="subject-code">BD001 - Turma B</div> -->
+                            </td>
+                            <td class="location-column">
+                                <div class="location-info">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Lab 01</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-day="3">
+                            <td class="day-column">Quarta-feira</td>
+                            <td class="time-column">19:40 - 22:30</td>
+                            <td class="subject-column">
+                                <div class="subject-name">Tecnologias para Desenvolvimento Web</div>
+                                <!-- <div class="subject-code">SO001 - Turma A</div> -->
+                            </td>
+                            <td class="location-column">
+                                <div class="location-info">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Lab 01</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-day="4">
+                            <td class="day-column">Quinta-feira</td>
+                            <td class="time-column">19:40 - 22:30</td>
+                            <td class="subject-column">
+                                <div class="subject-name">Integração de Dados</div>
+                                <!-- <div class="subject-code">ED001 - Turma C</div> -->
+                            </td>
+                            <td class="location-column">
+                                <div class="location-info">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Lab 01</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-day="5">
+                            <td class="day-column">Sexta-feira</td>
+                            <td class="time-column">19:40 - 22:30</td>
+                            <td class="subject-column">
+                                <div class="subject-name">Projeto Integrado Desenvolvimento de Aplicação Web</div>
+                                <!-- <div class="subject-code">PW001 - Turma A</div> -->
+                            </td>
+                            <td class="location-column">
+                                <div class="location-info">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Lab 01</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.header-menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+        }
+
+        // Get today's class
+        function getTodayClass() {
+            const diasSemana = [
+                "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira",
+                "Quinta-feira", "Sexta-feira", "Sábado"
+            ];
+
+            const classes = {
+                1: {
+                    subject: "Desenvolvimento de Interfaces de Usuário para Web",
+                    // code: "POO001 - Turma A",
+                    location: "Lab 01"
+                },
+                2: {
+                    subject: "Computação em Nuvem",
+                    // code: "BD001 - Turma B",
+                    location: "Lab 01"
+                },
+                3: {
+                    subject: "Tecnologias para Desenvolvimento Webs",
+                    // code: "SO001 - Turma A",
+                    location: "Lab 01"
+                },
+                4: {
+                    subject: "Integração de Dados",
+                    // code: "ED001 - Turma C",
+                    location: "Lab 01"
+                },
+                5: {
+                    subject: "Projeto Integrado Desenvolvimento de Aplicação Web",
+                    // code: "PW001 - Turma A",
+                    location: "Lab 01"
+                }
+            };
+
+            const hoje = new Date();
+            const diaSemana = hoje.getDay(); // 0 = Sunday, 1 = Monday, etc.
+
+            // Display current date
+            const dia = hoje.getDate();
+            const mes = hoje.getMonth();
+            const ano = hoje.getFullYear();
+
+            const mesesAno = [
+                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+            ];
+
+            const todayAlert = document.getElementById('today-alert');
+            const todayClass = document.getElementById('today-class');
+
+            if (diaSemana > 0 && diaSemana < 6) {
+                // It's a weekday
+                const todayClassInfo = classes[diaSemana];
+
+                // Set text for today's class
+                todayClass.innerHTML = `
+                    <strong>${diasSemana[diaSemana]}, ${dia} de ${mesesAno[mes]} de ${ano}</strong><br>
+                    ${todayClassInfo.subject} (${todayClassInfo.code})<br>
+                    ${todayClassInfo.location} | 19:40 - 22:30
+                `;
+
+                // Highlight current day in table
+                const rows = document.querySelectorAll('#schedule-body tr');
+                rows.forEach(row => {
+                    if (parseInt(row.getAttribute('data-day')) === diaSemana) {
+                        row.classList.add('current-day');
+                    }
+                });
+
+            } else {
+                // It's weekend
+                todayClass.innerHTML = `
+                    <strong>${diasSemana[diaSemana]}, ${dia} de ${mesesAno[mes]} de ${ano}</strong><br>
+                    Não há aulas programadas para hoje. Aproveite seu fim de semana!
+                `;
+
+                // Change alert style for weekend
+                todayAlert.classList.add('weekend');
+                document.querySelector('.today-alert i').className = 'fas fa-calendar-times';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            getTodayClass();
+        });
+    </script>
+</body>
+
+</html>
