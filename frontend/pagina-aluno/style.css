@@ -604,3 +604,188 @@ body {
     text-align: center;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+/* Estilização Página Grade Horária */
+/* Alerta do dia atual */
+.today-alert {
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: white;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.today-alert:hover {
+    transform: translateY(-2px);
+}
+
+.today-alert i {
+    font-size: 2rem;
+    opacity: 0.9;
+}
+
+.today-info h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.today-info p {
+    font-size: 1rem;
+    line-height: 1.5;
+    opacity: 0.95;
+}
+
+/* Estilo para fim de semana */
+.today-alert.weekend {
+    background: linear-gradient(135deg, #004884);
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+}
+
+/* Tabela da grade horária */
+.schedule-table {
+    width: 100%;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.schedule-table thead {
+    background: linear-gradient(135deg, #FAC20D);
+    color: #ffffff;
+}
+
+.schedule-table th {
+    padding: 18px 20px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.schedule-table tbody tr {
+    border-bottom: 1px solid #e0e4e7;
+    transition: all 0.3s ease;
+}
+
+.schedule-table tbody tr:hover {
+    background-color: #f8f9fc;
+    transform: scale(1.01);
+}
+
+.schedule-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.schedule-table td {
+    padding: 20px;
+    vertical-align: middle;
+}
+
+/* Coluna do dia da semana */
+.day-column {
+    font-weight: 600;
+    color: #004884;
+    font-size: 1.1rem;
+    width: 15%;
+    border-right: 2px solid #f0f2f5;
+}
+
+/* Coluna de horário */
+.time-column {
+    font-weight: 500;
+    color: #666;
+    font-size: 1rem;
+    width: 15%;
+    background-color: #f8f9fc;
+    border-right: 2px solid #f0f2f5;
+}
+
+/* Coluna da disciplina */
+.subject-column {
+    width: 45%;
+    padding-right: 25px;
+}
+
+.subject-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.subject-code {
+    font-size: 0.9rem;
+    color: #666;
+    background-color: #e3f2fd;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* Coluna de localização */
+.location-column {
+    width: 25%;
+}
+
+.location-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.location-info i {
+    color: #ff9800;
+    font-size: 1.1rem;
+}
+
+/* Destaque para o dia atual */
+.schedule-table tbody tr.current-day {
+    background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+    border-left: 5px solid #4caf50;
+    position: relative;
+}
+
+.schedule-table tbody tr.current-day::before {
+    content: "HOJE";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.schedule-table tbody tr.current-day .day-column {
+    color: #2e7d32;
+    font-weight: 700;
+}
+
+.schedule-table tbody tr.current-day .subject-name {
+    color: #2e7d32;
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px
+}
