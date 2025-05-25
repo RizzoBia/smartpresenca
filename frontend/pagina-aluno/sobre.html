@@ -14,8 +14,8 @@
         <!-- Header -->
         <header class="header">
             <div class="header-left">
-                <div class="logo-icon">SP</div>
-                <div class="logo-text">SmartPresença</div>
+                <div class="logo-icon">U</div>
+                <div class="logo-text">Smart<br>Presença</div>
             </div>
 
             <div class="header-right">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="user-info">
                     <i class="fas fa-user-circle"></i>
-                    <span>Bem-vindo(a), Usuário</span>
+                    <span> Usuário</span>
                 </div>
                 <div class="logout">
                     <a href="login.html" title="Sair">Sair</a>
@@ -63,34 +63,50 @@
                 </div>
             </nav>
 
-            <!-- Main content area -->
-            <main class="main-content">
-                <div class="welcome-section">
-                    <h1>Olá, Gabriel!</h1>
-                    <div class="status-info">
-                    </div>
-                </div>
 
 
-                <section id="sobre" class="sobre-container">
-                    <h2>Sobre a Smartpresença</h2>
-                    <p>
-                        A <strong>Smartpresença</strong> é um projeto desenvolvido por alunos da universidade
-                        <strong>UNIFEOB</strong> com o objetivo de tornar mais prático e eficiente o controle de
-                        presença nas aulas.
-                    </p>
-                    <p>
-                        A ideia principal é utilizar a tecnologia a favor da educação. Funciona assim: o professor gera
-                        um código, e o aluno, ao inserir esse código, recebe um <strong>QR Code</strong>. Esse QR Code
-                        será utilizado para marcar presença nas aulas.
-                    </p>
-                    <p>
-                        Com o uso de câmeras instaladas nas salas, o sistema identifica os QR Codes apresentados pelos
-                        alunos e faz a contagem automática das presenças. Isso evita fraudes e torna todo o processo
-                        mais rápido e moderno.
-                    </p>
-                    <p>
-                        O projeto surgiu como uma iniciativa prática dentro do curso, buscando aplicar na vida real os
-                        conhecimentos adquiridos e, ao mesmo tempo, oferecer uma solução inovadora para a instituição.
-                    </p>
-                </section>
+            <section id="sobre" class="sobre-container">
+                <h2>Sobre a Smartpresença</h2>
+                <p>
+                    A <strong>Smartpresença</strong> é um projeto desenvolvido por alunos da universidade
+                    <strong>UNIFEOB</strong> com o objetivo de tornar mais prático e eficiente o controle de
+                    presença nas aulas.
+                </p>
+                <p>
+                    A ideia principal é utilizar a tecnologia a favor da educação. Funciona assim: o professor gera
+                    um código, e o aluno, ao inserir esse código, recebe um <strong>QR Code</strong>. Esse QR Code
+                    será utilizado para marcar presença nas aulas.
+                </p>
+                <p>
+                    Com o uso de câmeras instaladas nas salas, o sistema identifica os QR Codes apresentados pelos
+                    alunos e faz a contagem automática das presenças. Isso evita fraudes e torna todo o processo
+                    mais rápido e moderno.
+                </p>
+                <p>
+                    O projeto surgiu como uma iniciativa prática dentro do curso, buscando aplicar na vida real os
+                    conhecimentos adquiridos e, ao mesmo tempo, oferecer uma solução inovadora para a instituição.
+                </p>
+            </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Menu toggle para mobile
+        document.querySelector('.header-menu-toggle').addEventListener('click', function () {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // Fechar sidebar quando clicar fora (mobile)
+        document.addEventListener('click', function (e) {
+            const sidebar = document.querySelector('.sidebar');
+            const toggle = document.querySelector('.header-menu-toggle');
+
+            if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>

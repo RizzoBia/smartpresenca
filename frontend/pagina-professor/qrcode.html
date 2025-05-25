@@ -64,279 +64,281 @@
             </nav>
 
 
-        <main class="main-content">
-            <h1 class="page-title">
-                <i class="fas fa-qrcode"></i>
-                Gerador de QR Code
-            </h1>
+            <main class="main-content">
+                <h1 class="page-title">
+                    <i class="fas fa-qrcode"></i>
+                    Gerador de QR Code
+                </h1>
 
-            <!-- Seleção de Matéria -->
-            <div class="step-container">
-                <div class="step-header">
-                    <div class="step-number">1</div>
-                    <h2 class="step-title">Selecionar Disciplina</h2>
+                <!-- Seleção de Matéria -->
+                <div class="step-container">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h2 class="step-title">Selecionar Disciplina</h2>
+                    </div>
+                    <div class="subject-selection">
+                        <select id="subject-select" onchange="showGenerateButton()">
+                            <option value="">Selecione uma disciplina...</option>
+                            <option value="algoritmos">Algoritmos e Programação - ALG001</option>
+                            <option value="matematica">Matemática Discreta - MAT202</option>
+                            <option value="banco-dados">Banco de Dados - BDA305</option>
+                            <option value="estrutura-dados">Estrutura de Dados - EDD203</option>
+                            <option value="engenharia-software">Engenharia de Software - ENG401</option>
+                            <option value="redes">Redes de Computadores - RED501</option>
+                            <option value="sistemas-operacionais">Sistemas Operacionais - SOP301</option>
+                            <option value="interface-humano">Interface Humano-Computador - IHC402</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="subject-selection">
-                    <select id="subject-select" onchange="showGenerateButton()">
-                        <option value="">Selecione uma disciplina...</option>
-                        <option value="algoritmos">Algoritmos e Programação - ALG001</option>
-                        <option value="matematica">Matemática Discreta - MAT202</option>
-                        <option value="banco-dados">Banco de Dados - BDA305</option>
-                        <option value="estrutura-dados">Estrutura de Dados - EDD203</option>
-                        <option value="engenharia-software">Engenharia de Software - ENG401</option>
-                        <option value="redes">Redes de Computadores - RED501</option>
-                        <option value="sistemas-operacionais">Sistemas Operacionais - SOP301</option>
-                        <option value="interface-humano">Interface Humano-Computador - IHC402</option>
-                    </select>
-                </div>
-            </div>
 
-            <!-- Geração do QR Code -->
-            <div class="step-container hidden" id="qr-generation">
-                <div class="step-header">
-                    <div class="step-number">2</div>
-                    <h2 class="step-title">Gerar QR Code</h2>
+                <!-- Geração do QR Code -->
+                <div class="step-container hidden" id="qr-generation">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h2 class="step-title">Gerar QR Code</h2>
+                    </div>
+                    <div class="qr-content">
+                        <button id="generate-btn" class="generate-qr-btn" onclick="generateQRCode()">
+                            <i class="fas fa-qrcode"></i>
+                            <span id="btn-text">Gerar QR Code</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="qr-content">
-                    <button id="generate-btn" class="generate-qr-btn" onclick="generateQRCode()">
-                        <i class="fas fa-qrcode"></i>
-                        <span id="btn-text">Gerar QR Code</span>
-                    </button>
-                </div>
-            </div>
 
-            <!-- Exibição do QR Code -->
-            <div class="step-container hidden" id="qr-display">
-                <div class="step-header">
-                    <div class="step-number">3</div>
-                    <h2 class="step-title">QR Code Gerado</h2>
-                </div>
-                <div class="qr-result">
-                    <div class="qr-info">
-                        <div class="subject-info">
-                            <h3 id="selected-subject">Disciplina Selecionada</h3>
-                            <p><strong>Professor:</strong> Mateus Silva</p>
-                            <p><strong>Data/Hora:</strong> <span id="session-datetime"></span></p>
-                            <p><strong>Válido por:</strong> <span class="validity-time">15 minutos</span></p>
-                            <p><strong>Status:</strong> <span style="color: #28a745; font-weight: 600;">Ativo</span></p>
-                        </div>
-                        <div class="session-code-display" id="session-code-display">
-                            <!-- Código será inserido aqui -->
-                        </div>
+                <!-- Exibição do QR Code -->
+                <div class="step-container hidden" id="qr-display">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h2 class="step-title">QR Code Gerado</h2>
                     </div>
-                    <div class="qr-code-display">
-                        <div id="qr-code-container">
-                            <!-- QR Code será inserido aqui -->
+                    <div class="qr-result">
+                        <div class="qr-info">
+                            <div class="subject-info">
+                                <h3 id="selected-subject">Disciplina Selecionada</h3>
+                                <p><strong>Professor:</strong> Mateus Silva</p>
+                                <p><strong>Data/Hora:</strong> <span id="session-datetime"></span></p>
+                                <p><strong>Válido por:</strong> <span class="validity-time">15 minutos</span></p>
+                                <p><strong>Status:</strong> <span style="color: #28a745; font-weight: 600;">Ativo</span>
+                                </p>
+                            </div>
+                            <div class="session-code-display" id="session-code-display">
+                                <!-- Código será inserido aqui -->
+                            </div>
                         </div>
-                        <div class="qr-actions">
-                            <button class="action-btn refresh-btn" onclick="refreshQRCode()">
-                                <i class="fas fa-sync-alt"></i>
-                                Renovar QR Code
-                            </button>
-                            <button class="action-btn download-btn" onclick="downloadQRCode()">
-                                <i class="fas fa-download"></i>
-                                Baixar QR Code
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Instruções para os Alunos -->
-            <div class="step-container">
-                <div class="step-header">
-                    <div class="step-number">!</div>
-                    <h2 class="step-title">Instruções para os Alunos</h2>
-                </div>
-                <div class="instructions">
-                    <div class="instruction-item">
-                        <i class="fas fa-mobile-alt"></i>
-                        <div>
-                            <h4>1. Abrir o App SmartPresença</h4>
-                            <p>Os alunos devem abrir o aplicativo móvel SmartPresença em seus dispositivos</p>
-                        </div>
-                    </div>
-                    <div class="instruction-item">
-                        <i class="fas fa-keyboard"></i>
-                        <div>
-                            <h4>2. Inserir Código da Sessão</h4>
-                            <p>Digitar o código de 6 dígitos exibido acima no campo apropriado do aplicativo</p>
-                        </div>
-                    </div>
-                    <div class="instruction-item">
-                        <i class="fas fa-qrcode"></i>
-                        <div>
-                            <h4>3. Escanear QR Code</h4>
-                            <p>Usar a câmera do celular para escanear o QR Code gerado nesta tela</p>
-                        </div>
-                    </div>
-                    <div class="instruction-item">
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <h4>4. Confirmar Presença</h4>
-                            <p>A presença será registrada automaticamente após a validação bem-sucedida</p>
+                        <div class="qr-code-display">
+                            <div id="qr-code-container">
+                                <!-- QR Code será inserido aqui -->
+                            </div>
+                            <div class="qr-actions">
+                                <button class="action-btn refresh-btn" onclick="refreshQRCode()">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Renovar QR Code
+                                </button>
+                                <button class="action-btn download-btn" onclick="downloadQRCode()">
+                                    <i class="fas fa-download"></i>
+                                    Baixar QR Code
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
-    </div>
 
-    <script>
-        let currentSessionCode = '';
-        let qrCodeInstance = null;
+                <!-- Instruções para os Alunos -->
+                <div class="step-container">
+                    <div class="step-header">
+                        <div class="step-number">!</div>
+                        <h2 class="step-title">Instruções para os Alunos</h2>
+                    </div>
+                    <div class="instructions">
+                        <div class="instruction-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>
+                                <h4>1. Abrir o App SmartPresença</h4>
+                                <p>Os alunos devem abrir o aplicativo móvel SmartPresença em seus dispositivos</p>
+                            </div>
+                        </div>
+                        <div class="instruction-item">
+                            <i class="fas fa-keyboard"></i>
+                            <div>
+                                <h4>2. Inserir Código da Sessão</h4>
+                                <p>Digitar o código de 6 dígitos exibido acima no campo apropriado do aplicativo</p>
+                            </div>
+                        </div>
+                        <div class="instruction-item">
+                            <i class="fas fa-qrcode"></i>
+                            <div>
+                                <h4>3. Escanear QR Code</h4>
+                                <p>Usar a câmera do celular para escanear o QR Code gerado nesta tela</p>
+                            </div>
+                        </div>
+                        <div class="instruction-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>4. Confirmar Presença</h4>
+                                <p>A presença será registrada automaticamente após a validação bem-sucedida</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
 
-        function showGenerateButton() {
-            const select = document.getElementById('subject-select');
-            const qrGeneration = document.getElementById('qr-generation');
-            const qrDisplay = document.getElementById('qr-display');
-            
-            if (select.value) {
-                qrGeneration.classList.remove('hidden');
-                // Esconder o QR Code anterior se existir
-                qrDisplay.classList.add('hidden');
-            } else {
-                qrGeneration.classList.add('hidden');
-                qrDisplay.classList.add('hidden');
-            }
-        }
+        <script>
+            let currentSessionCode = '';
+            let qrCodeInstance = null;
 
-        function generateQRCode() {
-            const select = document.getElementById('subject-select');
-            const selectedOption = select.options[select.selectedIndex];
-            const subjectName = selectedOption.text;
-            const generateBtn = document.getElementById('generate-btn');
-            const btnText = document.getElementById('btn-text');
-            
-            // Mostrar loading
-            btnText.innerHTML = '<span class="loading"></span> Gerando...';
-            generateBtn.disabled = true;
-            
-            setTimeout(() => {
-                // Gerar código da sessão baseado na data/hora atual
-                currentSessionCode = generateSessionCode();
-                
-                // Atualizar informações na tela
-                document.getElementById('selected-subject').textContent = subjectName;
-                document.getElementById('session-datetime').textContent = new Date().toLocaleString('pt-BR');
-                document.getElementById('session-code-display').textContent = currentSessionCode;
-                
-                // Dados para o QR Code
-                const qrData = {
-                    subject: select.value,
-                    subjectName: subjectName,
-                    sessionCode: currentSessionCode,
-                    timestamp: Date.now(),
-                    professor: 'Gabriel Santos',
-                    validity: 15, // minutos
-                    university: 'UNIFEOB'
-                };
-                
-                // Gerar QR Code real
-                generateQRCodeImage(JSON.stringify(qrData));
-                
-                // Mostrar o QR Code com animação
+            function showGenerateButton() {
+                const select = document.getElementById('subject-select');
+                const qrGeneration = document.getElementById('qr-generation');
                 const qrDisplay = document.getElementById('qr-display');
-                qrDisplay.classList.remove('hidden');
-                qrDisplay.classList.add('success-animation');
-                
-                // Reset do botão
-                btnText.textContent = 'Gerar QR Code';
-                generateBtn.disabled = false;
-                
-                // Scroll suave para o QR Code
-                setTimeout(() => {
-                    qrDisplay.scrollIntoView({ behavior: 'smooth' });
-                }, 300);
-                
-                // Auto-refresh após 15 minutos
-                setTimeout(() => {
-                    if (confirm('O QR Code expirou. Deseja gerar um novo?')) {
-                        refreshQRCode();
-                    }
-                }, 15 * 60 * 1000); // 15 minutos
-                
-            }, 1500); // Simular tempo de geração
-        }
 
-        function generateSessionCode() {
-            const now = new Date();
-            const day = String(now.getDate()).padStart(2, '0');
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const hour = String(now.getHours()).padStart(2, '0');
-            const minute = String(now.getMinutes()).padStart(2, '0');
-            
-            // Formato: DDMMHHMM -> ex: 24051430 (24/05 às 14:30)
-            const timeCode = day + month + hour + minute;
-            
-            // Pegar os últimos 6 dígitos e adicionar uma letra aleatória
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const randomChar = chars.charAt(Math.floor(Math.random() * chars.length));
-            
-            return timeCode.slice(-5) + randomChar;
-        }
-
-        function generateQRCodeImage(data) {
-            const container = document.getElementById('qr-code-container');
-            
-            // Limpar container anterior
-            container.innerHTML = '';
-            
-            // Gerar QR Code usando a biblioteca QRCode.js
-            QRCode.toCanvas(container, data, {
-                width: 280,
-                height: 280,
-                color: {
-                    dark: '#004884',
-                    light: '#FFFFFF'
-                },
-                margin: 2,
-                errorCorrectionLevel: 'M'
-            }, function (error) {
-                if (error) {
-                    console.error('Erro ao gerar QR Code:', error);
-                    container.innerHTML = '<p style="color: red;">Erro ao gerar QR Code</p>';
+                if (select.value) {
+                    qrGeneration.classList.remove('hidden');
+                    // Esconder o QR Code anterior se existir
+                    qrDisplay.classList.add('hidden');
                 } else {
-                    console.log('QR Code gerado com sucesso!');
-                    // Adicionar borda ao canvas
-                    const canvas = container.querySelector('canvas');
-                    if (canvas) {
-                        canvas.style.border = '2px solid #004884';
-                        canvas.style.borderRadius = '8px';
-                    }
+                    qrGeneration.classList.add('hidden');
+                    qrDisplay.classList.add('hidden');
                 }
-            });
-        }
-
-        function refreshQRCode() {
-            const refreshIcon = document.querySelector('.refresh-btn i');
-            refreshIcon.style.animation = 'spin 1s linear';
-            
-            setTimeout(() => {
-                generateQRCode();
-                refreshIcon.style.animation = '';
-            }, 1000);
-        }
-
-        function downloadQRCode() {
-            const canvas = document.querySelector('#qr-code-container canvas');
-            if (canvas) {
-                const link = document.createElement('a');
-                link.download = `QRCode_${currentSessionCode}_${new Date().toISOString().slice(0, 10)}.png`;
-                link.href = canvas.toDataURL();
-                link.click();
-            } else {
-                alert('Nenhum QR Code foi gerado ainda.');
             }
-        }
 
-        // Atualizar a hora a cada minuto
-        setInterval(() => {
-            const datetimeElement = document.getElementById('session-datetime');
-            if (datetimeElement && !datetimeElement.textContent.includes('Selecione')) {
-                datetimeElement.textContent = new Date().toLocaleString('pt-BR');
+            function generateQRCode() {
+                const select = document.getElementById('subject-select');
+                const selectedOption = select.options[select.selectedIndex];
+                const subjectName = selectedOption.text;
+                const generateBtn = document.getElementById('generate-btn');
+                const btnText = document.getElementById('btn-text');
+
+                // Mostrar loading
+                btnText.innerHTML = '<span class="loading"></span> Gerando...';
+                generateBtn.disabled = true;
+
+                setTimeout(() => {
+                    // Gerar código da sessão baseado na data/hora atual
+                    currentSessionCode = generateSessionCode();
+
+                    // Atualizar informações na tela
+                    document.getElementById('selected-subject').textContent = subjectName;
+                    document.getElementById('session-datetime').textContent = new Date().toLocaleString('pt-BR');
+                    document.getElementById('session-code-display').textContent = currentSessionCode;
+
+                    // Dados para o QR Code
+                    const qrData = {
+                        subject: select.value,
+                        subjectName: subjectName,
+                        sessionCode: currentSessionCode,
+                        timestamp: Date.now(),
+                        professor: 'Gabriel Santos',
+                        validity: 15, // minutos
+                        university: 'UNIFEOB'
+                    };
+
+                    // Gerar QR Code real
+                    generateQRCodeImage(JSON.stringify(qrData));
+
+                    // Mostrar o QR Code com animação
+                    const qrDisplay = document.getElementById('qr-display');
+                    qrDisplay.classList.remove('hidden');
+                    qrDisplay.classList.add('success-animation');
+
+                    // Reset do botão
+                    btnText.textContent = 'Gerar QR Code';
+                    generateBtn.disabled = false;
+
+                    // Scroll suave para o QR Code
+                    setTimeout(() => {
+                        qrDisplay.scrollIntoView({ behavior: 'smooth' });
+                    }, 300);
+
+                    // Auto-refresh após 15 minutos
+                    setTimeout(() => {
+                        if (confirm('O QR Code expirou. Deseja gerar um novo?')) {
+                            refreshQRCode();
+                        }
+                    }, 15 * 60 * 1000); // 15 minutos
+
+                }, 1500); // Simular tempo de geração
             }
-        }, 60000);
-    </script>
+
+            function generateSessionCode() {
+                const now = new Date();
+                const day = String(now.getDate()).padStart(2, '0');
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const hour = String(now.getHours()).padStart(2, '0');
+                const minute = String(now.getMinutes()).padStart(2, '0');
+
+                // Formato: DDMMHHMM -> ex: 24051430 (24/05 às 14:30)
+                const timeCode = day + month + hour + minute;
+
+                // Pegar os últimos 6 dígitos e adicionar uma letra aleatória
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                const randomChar = chars.charAt(Math.floor(Math.random() * chars.length));
+
+                return timeCode.slice(-5) + randomChar;
+            }
+
+            function generateQRCodeImage(data) {
+                const container = document.getElementById('qr-code-container');
+
+                // Limpar container anterior
+                container.innerHTML = '';
+
+                // Gerar QR Code usando a biblioteca QRCode.js
+                QRCode.toCanvas(container, data, {
+                    width: 280,
+                    height: 280,
+                    color: {
+                        dark: '#004884',
+                        light: '#FFFFFF'
+                    },
+                    margin: 2,
+                    errorCorrectionLevel: 'M'
+                }, function (error) {
+                    if (error) {
+                        console.error('Erro ao gerar QR Code:', error);
+                        container.innerHTML = '<p style="color: red;">Erro ao gerar QR Code</p>';
+                    } else {
+                        console.log('QR Code gerado com sucesso!');
+                        // Adicionar borda ao canvas
+                        const canvas = container.querySelector('canvas');
+                        if (canvas) {
+                            canvas.style.border = '2px solid #004884';
+                            canvas.style.borderRadius = '8px';
+                        }
+                    }
+                });
+            }
+
+            function refreshQRCode() {
+                const refreshIcon = document.querySelector('.refresh-btn i');
+                refreshIcon.style.animation = 'spin 1s linear';
+
+                setTimeout(() => {
+                    generateQRCode();
+                    refreshIcon.style.animation = '';
+                }, 1000);
+            }
+
+            function downloadQRCode() {
+                const canvas = document.querySelector('#qr-code-container canvas');
+                if (canvas) {
+                    const link = document.createElement('a');
+                    link.download = `QRCode_${currentSessionCode}_${new Date().toISOString().slice(0, 10)}.png`;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                } else {
+                    alert('Nenhum QR Code foi gerado ainda.');
+                }
+            }
+
+            // Atualizar a hora a cada minuto
+            setInterval(() => {
+                const datetimeElement = document.getElementById('session-datetime');
+                if (datetimeElement && !datetimeElement.textContent.includes('Selecione')) {
+                    datetimeElement.textContent = new Date().toLocaleString('pt-BR');
+                }
+            }, 60000);
+        </script>
 </body>
+
 </html>
