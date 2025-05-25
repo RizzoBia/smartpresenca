@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal do Estudante - UNIFEOB</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style-presencas.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with logo and user info -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo-icon">U</div>
+                <div class="logo-text">Smart<br>Presença</div>
+            </div>
+
+            <div class="header-right">
+                <div class="notification" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <div class="notification-badge">3</div>
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Prof. Mateus Silva</span>
+                </div>
+                <div class="logout">
+                    <a href="login.html" title="Sair">Sair</a>
+                </div>
+                <div class="header-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Wrapper -->
+        <div class="page-wrapper">
+            <!-- Sidebar -->
+            <nav class="sidebar" aria-label="Menu lateral">
+                <div class="sidebar-nav">
+                    <a href="index.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="relatorio.html" class="nav-item active">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Relatórios</span>
+                    </a>
+                    <a href="qrcode.html" class="nav-item">
+                        <i class="fas fa-qrcode"></i>
+                        <span>Gerar QR Code</span>
+                    </a>
+                    <a href="grade.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Grade Horária</span>
+                    </a>
+                    <a href="sobre.html" class="nav-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+            <!-- Main content area -->
+            <main class="main-content">
+                <div class="welcome-section">
+                    <h1>Controle de Presenças</h1>
+                    <div class="status-info">
+                        <p>Busque por <strong>RA específico</strong> ou visualize a lista completa de alunos com suas respectivas presenças.</p>
+                    </div>
+                </div>
+
+                <!-- Step 1: Student Search -->
+                <div class="step-container">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Buscar Aluno por RA</div>
+                    </div>
+                    
+                    <div class="search-section" id="search-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Digite o RA do aluno (ex: 123456)" id="student-search" maxlength="8">
+                        </div>
+                        
+                        <div class="student-info" id="student-info" style="display: none;">
+                            <h3 id="student-name">Nome do Aluno</h3>
+                            <p><strong>RA:</strong> <span id="student-ra">123456</span></p>
+                            <p><strong>Disciplina:</strong> <span id="student-discipline">Cálculo I</span></p>
+                            <p><strong>Total de Aulas:</strong> <span id="student-total">24</span></p>
+                            <p><strong>Presenças:</strong> <span id="student-presences">21</span></p>
+                            <p><strong>Faltas:</strong> <span id="student-absences">3</span></p>
+                            <p><strong>Taxa de Presença:</strong> <span id="student-attendance">87.5%</span></p>
+                            <p><strong>Status:</strong> <span id="student-status" class="status status-present">Aprovado</span></p>
+                        </div>
+                        
+                        <div class="no-results" id="no-results">
+                            <i class="fas fa-user-slash"></i>
+                            <h3>Aluno não encontrado</h3>
+                            <p>Verifique se o RA está correto e tente novamente.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: All Students List -->
+                <div class="step-container">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Lista Completa de Alunos</div>
+                    </div>
+                    
+                    <div class="student-list" id="student-list">
+                        <table class="student-list-table">
+                            <thead>
+                                <tr>
+                                    <th>RA</th>
+                                    <th>Nome do Aluno</th>
+                                    <th>Disciplina</th>
+                                    <th>Total de Aulas</th>
+                                    <th>Presenças</th>
+                                    <th>Faltas</th>
+                                    <th>Taxa de Presença</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="students-tbody">
+                                <!-- Dados serão carregados dinamicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Dados consolidados de todos os estudantes
+        const allStudentsData = [
+            // Cálculo I
+            { ra: '123456', name: 'Gabriel Costa Silva', discipline: 'Cálculo I', totalAulas: 24, presencas: 21, faltas: 3, taxa: 87.5, status: 'Aprovado' },
+            { ra: '123457', name: 'Maria Silva Santos', discipline: 'Cálculo I', totalAulas: 24, presencas: 20, faltas: 4, taxa: 83.3, status: 'Aprovado' },
+            { ra: '123458', name: 'João Oliveira Lima', discipline: 'Cálculo I', totalAulas: 24, presencas: 18, faltas: 6, taxa: 75.0, status: 'Alerta' },
+            { ra: '123459', name: 'Ana Paula Santos', discipline: 'Cálculo I', totalAulas: 24, presencas: 23, faltas: 1, taxa: 95.8, status: 'Aprovado' },
+            { ra: '123460', name: 'Bruno Almeida Costa', discipline: 'Cálculo I', totalAulas: 24, presencas: 15, faltas: 9, taxa: 62.5, status: 'Reprovado' },
+            { ra: '123461', name: 'Carla Fernanda Souza', discipline: 'Cálculo I', totalAulas: 24, presencas: 22, faltas: 2, taxa: 91.7, status: 'Aprovado' },
+            { ra: '123462', name: 'Diego Pereira Silva', discipline: 'Cálculo I', totalAulas: 24, presencas: 16, faltas: 8, taxa: 66.7, status: 'Reprovado' },
+            
+            // Programação Web
+            { ra: '234567', name: 'Carlos Rodrigues Lima', discipline: 'Programação Web', totalAulas: 30, presencas: 30, faltas: 0, taxa: 100.0, status: 'Aprovado' },
+            { ra: '234568', name: 'Fernanda Lima Santos', discipline: 'Programação Web', totalAulas: 30, presencas: 28, faltas: 2, taxa: 93.3, status: 'Aprovado' },
+            { ra: '234569', name: 'Lucas Santos Silva', discipline: 'Programação Web', totalAulas: 30, presencas: 25, faltas: 5, taxa: 83.3, status: 'Aprovado' },
+            { ra: '234570', name: 'Patricia Moura Costa', discipline: 'Programação Web', totalAulas: 30, presencas: 22, faltas: 8, taxa: 73.3, status: 'Alerta' },
+            { ra: '234571', name: 'Roberto Silva Oliveira', discipline: 'Programação Web', totalAulas: 30, presencas: 27, faltas: 3, taxa: 90.0, status: 'Aprovado' },
+            { ra: '234572', name: 'Juliana Costa Pereira', discipline: 'Programação Web', totalAulas: 30, presencas: 20, faltas: 10, taxa: 66.7, status: 'Reprovado' },
+            
+            // Banco de Dados
+            { ra: '345678', name: 'Rafael Pereira Santos', discipline: 'Banco de Dados', totalAulas: 32, presencas: 25, faltas: 7, taxa: 78.1, status: 'Aprovado' },
+            { ra: '345679', name: 'Juliana Costa Silva', discipline: 'Banco de Dados', totalAulas: 32, presencas: 28, faltas: 4, taxa: 87.5, status: 'Aprovado' },
+            { ra: '345680', name: 'Diego Alves Lima', discipline: 'Banco de Dados', totalAulas: 32, presencas: 20, faltas: 12, taxa: 62.5, status: 'Reprovado' },
+            { ra: '345681', name: 'Amanda Souza Costa', discipline: 'Banco de Dados', totalAulas: 32, presencas: 26, faltas: 6, taxa: 81.3, status: 'Aprovado' },
+            { ra: '345682', name: 'Marcelo Silva Santos', discipline: 'Banco de Dados', totalAulas: 32, presencas: 23, faltas: 9, taxa: 71.9, status: 'Alerta' },
+            
+            // Estrutura de Dados
+            { ra: '456789', name: 'Amanda Silva Costa', discipline: 'Estrutura de Dados', totalAulas: 36, presencas: 27, faltas: 9, taxa: 75.0, status: 'Alerta' },
+            { ra: '456790', name: 'Thiago Borges Lima', discipline: 'Estrutura de Dados', totalAulas: 36, presencas: 32, faltas: 4, taxa: 88.9, status: 'Aprovado' },
+            { ra: '456791', name: 'Carla Mendes Santos', discipline: 'Estrutura de Dados', totalAulas: 36, presencas: 24, faltas: 12, taxa: 66.7, status: 'Reprovado' },
+            { ra: '456792', name: 'Felipe Santos Silva', discipline: 'Estrutura de Dados', totalAulas: 36, presencas: 30, faltas: 6, taxa: 83.3, status: 'Aprovado' },
+            { ra: '456793', name: 'Beatriz Costa Lima', discipline: 'Estrutura de Dados', totalAulas: 36, presencas: 29, faltas: 7, taxa: 80.6, status: 'Aprovado' },
+            
+            // Desenvolvimento Mobile
+            { ra: '567890', name: 'Eduardo Santos Silva', discipline: 'Desenvolvimento Mobile', totalAulas: 20, presencas: 19, faltas: 1, taxa: 95.0, status: 'Aprovado' },
+            { ra: '567891', name: 'Isabela Rocha Costa', discipline: 'Desenvolvimento Mobile', totalAulas: 20, presencas: 17, faltas: 3, taxa: 85.0, status: 'Aprovado' },
+            { ra: '567892', name: 'Marcos Ferreira Lima', discipline: 'Desenvolvimento Mobile', totalAulas: 20, presencas: 14, faltas: 6, taxa: 70.0, status: 'Alerta' },
+            { ra: '567893', name: 'Larissa Silva Santos', discipline: 'Desenvolvimento Mobile', totalAulas: 20, presencas: 18, faltas: 2, taxa: 90.0, status: 'Aprovado' },
+            { ra: '567894', name: 'Gustavo Costa Oliveira', discipline: 'Desenvolvimento Mobile', totalAulas: 20, presencas: 16, faltas: 4, taxa: 80.0, status: 'Aprovado' }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Elementos do DOM
+            const studentSearch = document.getElementById('student-search');
+            const studentsTbody = document.getElementById('students-tbody');
+            const studentInfo = document.getElementById('student-info');
+            const noResults = document.getElementById('no-results');
+
+            // Controle de Menu em dispositivos móveis
+            const menuToggle = document.querySelector('.header-menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function () {
+                    sidebar.classList.toggle('active');
+                });
+            }
+
+            // Carregar todos os alunos na inicialização
+            loadAllStudents();
+
+            // Busca por RA
+            studentSearch.addEventListener('input', function () {
+                const searchRA = this.value.trim();
+                
+                if (searchRA.length >= 3) {
+                    searchStudent(searchRA);
+                } else {
+                    studentInfo.style.display = 'none';
+                    noResults.classList.remove('active');
+                }
+            });
+
+            // Função para carregar todos os alunos
+            function loadAllStudents() {
+                studentsTbody.innerHTML = '';
+                
+                allStudentsData.forEach(student => {
+                    const row = document.createElement('tr');
+                    
+                    const statusClass = getStatusClass(student.status);
+                    
+                    row.innerHTML = `
+                        <td>${student.ra}</td>
+                        <td>${student.name}</td>
+                        <td>${student.discipline}</td>
+                        <td>${student.totalAulas}</td>
+                        <td>${student.presencas}</td>
+                        <td>${student.faltas}</td>
+                        <td>${student.taxa.toFixed(1)}%</td>
+                        <td><span class="status ${statusClass}">${student.status}</span></td>
+                    `;
+                    
+                    studentsTbody.appendChild(row);
+                });
+            }
+
+            // Função para buscar estudante
+            function searchStudent(searchRA) {
+                const foundStudent = allStudentsData.find(student => 
+                    student.ra.includes(searchRA)
+                );
+                
+                if (foundStudent) {
+                    // Exibir informações do estudante
+                    document.getElementById('student-name').textContent = foundStudent.name;
+                    document.getElementById('student-ra').textContent = foundStudent.ra;
+                    document.getElementById('student-discipline').textContent = foundStudent.discipline;
+                    document.getElementById('student-total').textContent = foundStudent.totalAulas;
+                    document.getElementById('student-presences').textContent = foundStudent.presencas;
+                    document.getElementById('student-absences').textContent = foundStudent.faltas;
+                    document.getElementById('student-attendance').textContent = foundStudent.taxa.toFixed(1) + '%';
+                    
+                    const statusElement = document.getElementById('student-status');
+                    statusElement.textContent = foundStudent.status;
+                    statusElement.className = 'status ' + getStatusClass(foundStudent.status);
+                    
+                    studentInfo.style.display = 'block';
+                    noResults.classList.remove('active');
+                } else {
+                    // Não encontrado
+                    studentInfo.style.display = 'none';
+                    noResults.classList.add('active');
+                }
+            }
+
+            // Função para obter classe CSS baseada no status
+            function getStatusClass(status) {
+                switch (status) {
+                    case 'Aprovado':
+                        return 'status-present';
+                    case 'Alerta':
+                        return 'status-warning';
+                    case 'Reprovado':
+                        return 'status-danger';
+                    default:
+                        return 'status-present';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
