@@ -63,7 +63,6 @@
                 </div>
             </nav>
 
-
             <main class="main-content">
                 <h1 class="page-title">
                     <i class="fas fa-qrcode"></i>
@@ -118,26 +117,10 @@
                                 <p><strong>Professor:</strong> Mateus Silva</p>
                                 <p><strong>Data/Hora:</strong> <span id="session-datetime"></span></p>
                                 <p><strong>Válido por:</strong> <span class="validity-time">15 minutos</span></p>
-                                <p><strong>Status:</strong> <span style="color: #28a745; font-weight: 600;">Ativo</span>
-                                </p>
+                                <p><strong>Status:</strong> <span style="color: #28a745; font-weight: 600;">Ativo</span></p>
                             </div>
                             <div class="session-code-display" id="session-code-display">
                                 <!-- Código será inserido aqui -->
-                            </div>
-                        </div>
-                        <div class="qr-code-display">
-                            <div id="qr-code-container">
-                                <!-- QR Code será inserido aqui -->
-                            </div>
-                            <div class="qr-actions">
-                                <button class="action-btn refresh-btn" onclick="refreshQRCode()">
-                                    <i class="fas fa-sync-alt"></i>
-                                    Renovar QR Code
-                                </button>
-                                <button class="action-btn download-btn" onclick="downloadQRCode()">
-                                    <i class="fas fa-download"></i>
-                                    Baixar QR Code
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -168,7 +151,8 @@
                             <i class="fas fa-qrcode"></i>
                             <div>
                                 <h4>3. Escanear QR Code</h4>
-                                <p>Usar a câmera do celular para escanear o QR Code gerado nesta tela</p>
+                                <br>
+                                <p>Use o QR Code gerado para registrar sua presença em uma das câmeras da sala.</p>
                             </div>
                         </div>
                         <div class="instruction-item">
@@ -185,7 +169,6 @@
 
         <script>
             let currentSessionCode = '';
-            let qrCodeInstance = null;
 
             function showGenerateButton() {
                 const select = document.getElementById('subject-select');
@@ -222,20 +205,6 @@
                     document.getElementById('session-datetime').textContent = new Date().toLocaleString('pt-BR');
                     document.getElementById('session-code-display').textContent = currentSessionCode;
 
-                    // Dados para o QR Code
-                    const qrData = {
-                        subject: select.value,
-                        subjectName: subjectName,
-                        sessionCode: currentSessionCode,
-                        timestamp: Date.now(),
-                        professor: 'Gabriel Santos',
-                        validity: 15, // minutos
-                        university: 'UNIFEOB'
-                    };
-
-                    // Gerar QR Code real
-                    generateQRCodeImage(JSON.stringify(qrData));
-
                     // Mostrar o QR Code com animação
                     const qrDisplay = document.getElementById('qr-display');
                     qrDisplay.classList.remove('hidden');
@@ -249,13 +218,6 @@
                     setTimeout(() => {
                         qrDisplay.scrollIntoView({ behavior: 'smooth' });
                     }, 300);
-
-                    // Auto-refresh após 15 minutos
-                    setTimeout(() => {
-                        if (confirm('O QR Code expirou. Deseja gerar um novo?')) {
-                            refreshQRCode();
-                        }
-                    }, 15 * 60 * 1000); // 15 minutos
 
                 }, 1500); // Simular tempo de geração
             }
@@ -277,60 +239,6 @@
                 return timeCode.slice(-5) + randomChar;
             }
 
-            function generateQRCodeImage(data) {
-                const container = document.getElementById('qr-code-container');
-
-                // Limpar container anterior
-                container.innerHTML = '';
-
-                // Gerar QR Code usando a biblioteca QRCode.js
-                QRCode.toCanvas(container, data, {
-                    width: 280,
-                    height: 280,
-                    color: {
-                        dark: '#004884',
-                        light: '#FFFFFF'
-                    },
-                    margin: 2,
-                    errorCorrectionLevel: 'M'
-                }, function (error) {
-                    if (error) {
-                        console.error('Erro ao gerar QR Code:', error);
-                        container.innerHTML = '<p style="color: red;">Erro ao gerar QR Code</p>';
-                    } else {
-                        console.log('QR Code gerado com sucesso!');
-                        // Adicionar borda ao canvas
-                        const canvas = container.querySelector('canvas');
-                        if (canvas) {
-                            canvas.style.border = '2px solid #004884';
-                            canvas.style.borderRadius = '8px';
-                        }
-                    }
-                });
-            }
-
-            function refreshQRCode() {
-                const refreshIcon = document.querySelector('.refresh-btn i');
-                refreshIcon.style.animation = 'spin 1s linear';
-
-                setTimeout(() => {
-                    generateQRCode();
-                    refreshIcon.style.animation = '';
-                }, 1000);
-            }
-
-            function downloadQRCode() {
-                const canvas = document.querySelector('#qr-code-container canvas');
-                if (canvas) {
-                    const link = document.createElement('a');
-                    link.download = `QRCode_${currentSessionCode}_${new Date().toISOString().slice(0, 10)}.png`;
-                    link.href = canvas.toDataURL();
-                    link.click();
-                } else {
-                    alert('Nenhum QR Code foi gerado ainda.');
-                }
-            }
-
             // Atualizar a hora a cada minuto
             setInterval(() => {
                 const datetimeElement = document.getElementById('session-datetime');
@@ -339,6 +247,7 @@
                 }
             }, 60000);
         </script>
+    </div>
 </body>
 
 </html>
