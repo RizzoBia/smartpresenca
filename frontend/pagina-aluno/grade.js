@@ -1,4 +1,4 @@
-async function carregarResumoIndex() {
+async function carregarResumoGrade() {
     const token = localStorage.getItem('token');
     const ra = localStorage.getItem('ra');
 
@@ -33,4 +33,4 @@ async function carregarResumoIndex() {
     }
 }
 
-window.onload = carregarResumoIndex;
+window.onload = carregarResumoGrade;
