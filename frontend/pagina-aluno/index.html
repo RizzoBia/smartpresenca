@@ -25,7 +25,7 @@
                 </div>
                 <div class="user-info">
                     <i class="fas fa-user-circle"></i>
-                    <span>Usuário</span>
+                    <span class="user-name">Usuário</span>
                 </div>
                 <div class="logout">
                     <a href="login.html" title="Sair">Sair</a>
@@ -68,7 +68,9 @@
                 <section class="welcome-section">
                     <h1>Painel do Aluno</h1>
                     <div class="status-info">
-                        <div class="semester-info"><strong>Semestre Atual:</strong> 1º semestre de 2025</div>
+                        <div class="semester-info">
+                            <strong>Curso:</strong> <span class="user-curso">Curso</span>
+                        </div>
                         <div class="user-status"><strong>Status:</strong> Matriculado</div>
                     </div>
                 </section>
@@ -102,6 +104,8 @@
             </main>
         </div>
     </div>
+    <script src="../api.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

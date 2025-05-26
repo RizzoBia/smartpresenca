@@ -52,6 +52,26 @@ class StudentsControllers {
             res.status(500).json({ success: false, message: 'Erro ao remover aluno', error });
         }
     }
+    async getResumo(req, res) {
+        try {
+            const { ra } = req.params;
+            const aluno = await knex('Dim_aluno').where({ ra }).first();
+
+            if (!aluno) {
+                return res.status(404).json({ message: 'Aluno não encontrado' });
+            }
+
+            res.status(200).json({
+                nome: aluno.nome,
+                curso: aluno.curso
+            });
+        } catch (error) {
+            console.error('Erro ao buscar resumo do aluno:', error);
+            res.status(500).json({ message: 'Erro ao buscar resumo do aluno', error: error.message });
+        }
+    }
+
+
 }
 
 module.exports = new StudentsControllers();
