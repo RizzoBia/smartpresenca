@@ -41,8 +41,8 @@
         const API_URL = 'http://localhost:4040';
 
         document.querySelector('.botao').addEventListener('click', async function () {
-            const identifier = document.querySelectorAll('.cadastro')[0].value;
-            const password = document.querySelectorAll('.cadastro')[1].value;
+            const identifier = document.querySelectorAll('.cadastro')[0].value.trim();
+            const password = document.querySelectorAll('.cadastro')[1].value.trim();
 
             if (!identifier || !password) {
                 alert('Por favor, preencha todos os campos!');
@@ -64,14 +64,20 @@
 
                 const data = await response.json();
 
-                // Salvar token e ra no localStorage
+                // Salvar token e ra/rm no localStorage
                 localStorage.setItem('token', data.token);
-                localStorage.setItem('ra', identifier);
+                localStorage.setItem('identifier', identifier); 
 
                 alert('Login realizado com sucesso!');
 
-                // Redirecionar para frequência
-                window.location.href = 'frontend/pagina-aluno/index.html';
+                // Redirecionamento
+                if (identifier.length === 6 && identifier.startsWith('1')) {
+                    window.location.href = 'frontend/pagina-professor/index.html';
+                } else if (identifier.length === 8 && identifier.startsWith('2')) {
+                    window.location.href = 'frontend/pagina-aluno/index.html';
+                } else {
+                    alert('Identificador inválido ou não reconhecido!');
+                }
 
             } catch (error) {
                 console.error('Erro ao fazer login:', error);
