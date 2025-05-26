@@ -25,7 +25,7 @@
                 </div>
                 <div class="user-info">
                     <i class="fas fa-user-circle"></i>
-                    <span>Prof. Mateus Silva</span>
+                    <span class="user-name">Usuário</span>
                 </div>
                 <div class="logout">
                     <a href="login.html" title="Sair">Sair</a>
@@ -69,8 +69,12 @@
                 <section class="welcome-section">
                     <h1>Painel do Professor</h1>
                     <div class="status-info">
-                        <div class="semester-info"><strong>Semestre Atual:</strong> 1º semestre de 2025</div>
-                        <div class="user-status"><strong>Status:</strong> Matriculado</div>
+                        <div class="semester-info">
+                            <strong>Data:</strong> <span class="data-atual">--/--/----</span>
+                        </div>
+                        <div class="user-status">
+                            <strong>Aula:</strong> <span class="status-aula">Carregando...</span>
+                        </div>
                     </div>
                 </section>
 
@@ -103,6 +107,7 @@
             </main>
         </div>
     </div>
+    <script src="index.js"></script>
 </body>
 
 </html>

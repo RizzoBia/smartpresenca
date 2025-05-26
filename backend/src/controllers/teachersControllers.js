@@ -49,6 +49,55 @@ class TeachersControllers {
             res.status(500).json({ success: false, message: 'Erro ao remover professor', error });
         }
     }
+    async getAulas(req, res) {
+        const { rm } = req.params;
+
+        try {
+            const aulas = await knex('view_aulas_professor')
+                .where({ rm_professor: rm })
+                .select(
+                    'nome_disciplina as disciplina',
+                    'dia_semana',
+                    'hora_inicio',
+                    'hora_fim',
+                    'nome_turma',
+                    'sala',
+                    'bloco',
+                    'campus'
+                );
+
+            if (!aulas || aulas.length === 0) {
+                return res.status(404).json({ message: 'Nenhuma aula encontrada para este professor.' });
+            }
+
+            res.status(200).json(aulas);
+
+        } catch (err) {
+            console.error('Erro ao buscar aulas do professor:', err);
+            res.status(500).json({ message: 'Erro ao buscar aulas do professor', error: err.message });
+        }
+    }
+    async getResumo(req, res) {
+        try {
+            const { rm } = req.params;
+            const professor = await knex('Dim_professor').where({ rm }).first();
+
+            if (!professor) {
+                return res.status(404).json({ message: 'Professor não encontrado' });
+            }
+
+            res.status(200).json({
+                nome: professor.nome,
+                titulacao: professor.titulacao
+            });
+        } catch (error) {
+            console.error('Erro ao buscar resumo do professor:', error);
+            res.status(500).json({ message: 'Erro ao buscar resumo do professor', error: error.message });
+        }
+    }
+
+
+
 }
 
 module.exports = new TeachersControllers();
