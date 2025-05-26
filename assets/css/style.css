@@ -1,6 +1,6 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #FFF5E0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8d5f0 100%);
 }
 .contener{
     position: relative;
@@ -14,11 +14,11 @@ body{
     background-color: white;
     padding: 65px;
     border-radius: 10px;
-    box-shadow: 4px 4px 5px rgb(150, 150, 150);
+    box-shadow: 4px 4px 5px 3px rgb(206, 205, 205);
     z-index: 2;
 }
 .botao{
-    background-color: rgba(40, 90, 142, 1);
+    background-color:#004884;
     color: white;
     border-radius: 5px; 
     width: 200px; 
@@ -35,7 +35,7 @@ body{
     box-shadow: inset 1px 1px 3px rgb(121, 121, 121);
 }
 .logo{
-    background-color: rgba(40, 90, 142, 1);
+    background-color: #004884;
     padding: 15px;
     text-align: center;
     margin-bottom: -25px;
@@ -46,7 +46,7 @@ body{
 }
 .retangulo1{
     position: absolute;
-    background-color: rgb(40, 90, 142);
+    background-color: #004884;
     width: 1000px;
     height: 50px;
     box-shadow: 3px 3px 2px rgb(150, 150, 150);
@@ -56,7 +56,7 @@ body{
 }
 .retangulo2{
     position: absolute;
-    background-color: rgba(250, 194, 13, 1);
+    background-color:#FAC20D;
     width: 890px;
     height: 50px;
     box-shadow: 3px 3px 2px rgb(150, 150, 150);
@@ -66,7 +66,7 @@ body{
 }
 .retangulo3{
     position: absolute;
-    background-color: rgb(40, 90, 142);
+    background-color:#004884;
     width: 1000px;
     height: 50px;
     box-shadow: 3px 3px 2px rgb(150, 150, 150); 
@@ -77,7 +77,7 @@ body{
 }
 .retangulo4{
     position: absolute;
-    background-color: rgba(250, 194, 13, 1);
+    background-color:#FAC20D;
     width: 890px;
     height: 50px;
     box-shadow: 3px 3px 2px rgba(150, 150, 150, 0.61); 
