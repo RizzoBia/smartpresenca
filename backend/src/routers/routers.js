@@ -37,4 +37,7 @@ router.put('/presenca/:id', authorize(['professor']), presencaController.update)
 
 router.get('/frequencia/:ra', authorize(['aluno', 'professor', 'admin']), frequenciaController.getFrequenciaByRA);
 
+router.get('/aluno/resumo/:ra', authorize(['aluno']), studentsControllers.getResumo);
+
+
 module.exports = router;
