@@ -53,24 +53,28 @@ async function carregarFrequencia() {
         });
 
         const tbody = document.querySelector('#subjects tbody');
-        tbody.innerHTML = '';
 
-        dados.forEach(item => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${item.disciplina}</td>
-                <td>${item.total_registros}</td>
-                <td>${item.presencas}</td>
-                <td>${item.faltas}</td>
-                <td>${item.percentual_presenca}%</td>
-                <td>
-                    <span class="status ${item.percentual_presenca >= 75 ? 'status-present' : 'status-warning'}">
-                        ${item.percentual_presenca >= 75 ? 'Aprovado' : 'Alerta'}
-                    </span>
-                </td>
-            `;
-            tbody.appendChild(tr);
-        });
+        if (tbody) {
+            tbody.innerHTML = '';
+
+            dados.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+            <td>${item.disciplina}</td>
+            <td>${item.total_registros}</td>
+            <td>${item.presencas}</td>
+            <td>${item.faltas}</td>
+            <td>${item.percentual_presenca}%</td>
+            <td>
+                <span class="status ${item.percentual_presenca >= 75 ? 'status-present' : 'status-warning'}">
+                    ${item.percentual_presenca >= 75 ? 'Aprovado' : 'Alerta'}
+                </span>
+            </td>
+        `;
+                tbody.appendChild(tr);
+            });
+        }
+
 
     } catch (err) {
         console.error('Erro ao carregar frequência:', err);
