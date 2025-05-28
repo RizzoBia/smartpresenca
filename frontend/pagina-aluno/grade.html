@@ -28,7 +28,7 @@
                     <span class="user-name">Usuário</span>
                 </div>
                 <div class="logout">
-                    <a href="login.html" title="Sair">Sair</a>
+                    <a href="../../login.html" title="Sair">Sair</a>
                 </div>
                 <div class="header-menu-toggle">
                     <i class="fas fa-bars"></i>
@@ -63,11 +63,9 @@
                 </div>
             </nav>
 
-            <!-- Main content area -->
             <main class="main-content">
                 <h1 class="page-title">Grade Horária - Aluno</h1>
 
-                <!-- Today's Alert -->
                 <div class="today-alert" id="today-alert">
                     <i class="fas fa-calendar-check"></i>
                     <div class="today-info">
@@ -76,7 +74,6 @@
                     </div>
                 </div>
 
-                <!-- Schedule Table -->
                 <table class="schedule-table">
                     <thead>
                         <tr>
@@ -212,7 +209,6 @@
             const hoje = new Date();
             const diaSemana = hoje.getDay(); // 0 = Sunday, 1 = Monday, etc.
 
-            // Display current date
             const dia = hoje.getDate();
             const mes = hoje.getMonth();
             const ano = hoje.getFullYear();
@@ -232,7 +228,7 @@
                 // Set text for today's class
                 todayClass.innerHTML = `
                     <strong>${diasSemana[diaSemana]}, ${dia} de ${mesesAno[mes]} de ${ano}</strong><br>
-                    ${todayClassInfo.subject} (${todayClassInfo.code})<br>
+                    ${todayClassInfo.subject} <br>
                     ${todayClassInfo.location} | 19:40 - 22:30
                 `;
 
@@ -245,13 +241,11 @@
                 });
 
             } else {
-                // It's weekend
                 todayClass.innerHTML = `
                     <strong>${diasSemana[diaSemana]}, ${dia} de ${mesesAno[mes]} de ${ano}</strong><br>
                     Não há aulas programadas para hoje. Aproveite seu fim de semana!
                 `;
 
-                // Change alert style for weekend
                 todayAlert.classList.add('weekend');
                 document.querySelector('.today-alert i').className = 'fas fa-calendar-times';
             }
