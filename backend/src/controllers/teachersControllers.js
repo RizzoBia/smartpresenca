@@ -58,6 +58,7 @@ class TeachersControllers {
                 .select(
                     'nome_disciplina as disciplina',
                     'dia_semana',
+                    'dia_semana_num',
                     'hora_inicio',
                     'hora_fim',
                     'nome_turma',
