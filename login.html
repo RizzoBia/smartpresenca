@@ -64,23 +64,42 @@
 
                 const data = await response.json();
 
-                // Salvar token e ra/rm no localStorage
+                // Salvar token no localStorage
                 localStorage.setItem('token', data.token);
-                if (identifier.length === 6 && identifier.startsWith('1')) {
-                    localStorage.setItem('rm', identifier);
-                }
-                if (identifier.length === 8 && identifier.startsWith('2')) {
-                    localStorage.setItem('ra', identifier);
-                }
                 localStorage.setItem('identifier', identifier);
 
-                alert('Login realizado com sucesso!');
-
-                // Redirecionamento
                 if (identifier.length === 6 && identifier.startsWith('1')) {
+                    // Professor
+                    localStorage.setItem('rm', identifier);
+
+                    // Buscar dados do professor
+                    const profResponse = await fetch(`${API_URL}/teacher/${identifier}`, {
+                        headers: {
+                            'Authorization': `Bearer ${data.token}`
+                        }
+                    });
+
+                    if (!profResponse.ok) {
+                        throw new Error('Falha ao buscar dados do professor');
+                    }
+
+                    const profData = await profResponse.json();
+
+                    localStorage.setItem('professor', JSON.stringify({
+                        nome: profData.teacher.nome,
+                        rm: identifier
+                    }));
+
+                    alert('Login realizado com sucesso!');
                     window.location.href = 'frontend/pagina-professor/index.html';
+
                 } else if (identifier.length === 8 && identifier.startsWith('2')) {
+                    // Aluno
+                    localStorage.setItem('ra', identifier);
+
+                    alert('Login realizado com sucesso!');
                     window.location.href = 'frontend/pagina-aluno/index.html';
+
                 } else {
                     alert('Identificador inválido ou não reconhecido!');
                 }
@@ -91,6 +110,7 @@
             }
         });
     </script>
+
 
 </body>
 

@@ -63,7 +63,7 @@
                     </a>
                 </div>
             </nav>
-            </header>
+
             <!-- Main content area -->
             <main class="main-content">
                 <div class="welcome-section">
@@ -139,148 +139,7 @@
         </div>
     </div>
 
-    <script>
-        // Dados consolidados de todos os estudantes
-        const allStudentsData = [
-            // Cálculo I
-            { ra: '123456', name: 'Gabriel Costa Silva', discipline: 'Cálculo I', totalAulas: 24, presencas: 21, faltas: 3, taxa: 87.5, status: 'Aprovado' },
-            { ra: '123457', name: 'Maria Silva Santos', discipline: 'Cálculo I', totalAulas: 24, presencas: 20, faltas: 4, taxa: 83.3, status: 'Aprovado' },
-            { ra: '123458', name: 'João Oliveira Lima', discipline: 'Cálculo I', totalAulas: 24, presencas: 18, faltas: 6, taxa: 75.0, status: 'Alerta' },
-            { ra: '123459', name: 'Ana Paula Santos', discipline: 'Cálculo I', totalAulas: 24, presencas: 23, faltas: 1, taxa: 95.8, status: 'Aprovado' },
-            { ra: '123460', name: 'Bruno Almeida Costa', discipline: 'Cálculo I', totalAulas: 24, presencas: 15, faltas: 9, taxa: 62.5, status: 'Reprovado' },
-            { ra: '123461', name: 'Carla Fernanda Souza', discipline: 'Cálculo I', totalAulas: 24, presencas: 22, faltas: 2, taxa: 91.7, status: 'Aprovado' },
-            { ra: '123462', name: 'Diego Pereira Silva', discipline: 'Cálculo I', totalAulas: 24, presencas: 16, faltas: 8, taxa: 66.7, status: 'Reprovado' },
-
-            // Programação Web
-            { ra: '234567', name: 'Carlos Rodrigues Lima', discipline: 'Programação Web', totalAulas: 30, presencas: 30, faltas: 0, taxa: 100.0, status: 'Aprovado' },
-            { ra: '234568', name: 'Fernanda Lima Santos', discipline: 'Programação Web', totalAulas: 30, presencas: 28, faltas: 2, taxa: 93.3, status: 'Aprovado' },
-            { ra: '234569', name: 'Lucas Santos Silva', discipline: 'Programação Web', totalAulas: 30, presencas: 25, faltas: 5, taxa: 83.3, status: 'Aprovado' },
-            { ra: '234570', name: 'Patricia Moura Costa', discipline: 'Programação Web', totalAulas: 30, presencas: 22, faltas: 8, taxa: 73.3, status: 'Alerta' },
-            { ra: '234571', name: 'Roberto Silva Oliveira', discipline: 'Programação Web', totalAulas: 30, presencas: 27, faltas: 3, taxa: 90.0, status: 'Aprovado' },
-            { ra: '234572', name: 'Juliana Costa Pereira', discipline: 'Programação Web', totalAulas: 30, presencas: 20, faltas: 10, taxa: 66.7, status: 'Reprovado' },
-
-            // Banco de Dados
-            { ra: '345678', name: 'Rafael Pereira Santos', discipline: 'Banco de Dados', totalAulas: 32, presencas: 25, faltas: 7, taxa: 78.1, status: 'Aprovado' },
-            { ra: '345679', name: 'Juliana Costa Silva', discipline: 'Banco de Dados', totalAulas: 32, presencas: 28, faltas: 4, taxa: 87.5, status: 'Aprovado' },
-            { ra: '345680', name: 'Diego Alves Lima', discipline: 'Banco de Dados', totalAulas: 32, presencas: 20, faltas: 12, taxa: 62.5, status: 'Reprovado' },
-            { ra: '345681', name: 'Amanda Souza Costa', discipline: 'Banco de Dados', totalAulas: 32, presencas: 26, faltas: 6, taxa: 81.3, status: 'Aprovado' },
-            { ra: '345682', name: 'Marcelo Silva Santos', discipline: 'Banco de Dados', totalAulas: 32, presencas: 23, faltas: 9, taxa: 71.9, status: 'Alerta' },
-
-            // Estrutura de Dados
-            { ra: '456789', name: 'Amanda Silva Costa', discipline: 'Estrutura de Dados', totalAulas: 36, presencas: 27, faltas: 9, taxa: 75.0, status: 'Alerta' },
-            { ra: '456790', name: 'Thiago Borges Lima', discipline: 'Estrutura de Dados', totalAulas: 36, presencas: 32, faltas: 4, taxa: 88.9, status: 'Aprovado' },
-            { ra: '456791', name: 'Carla Mendes Santos', discipline: 'Estrutura de Dados', totalAulas: 36, presencas: 24, faltas: 12, taxa: 66.7, status: 'Reprovado' },
-            { ra: '456792', name: 'Felipe Santos Silva', discipline: 'Estrutura de Dados', totalAulas: 36, presencas: 30, faltas: 6, taxa: 83.3, status: 'Aprovado' },
-            { ra: '456793', name: 'Beatriz Costa Lima', discipline: 'Estrutura de Dados', totalAulas: 36, presencas: 29, faltas: 7, taxa: 80.6, status: 'Aprovado' },
-
-            // Desenvolvimento Mobile
-            { ra: '567890', name: 'Eduardo Santos Silva', discipline: 'Desenvolvimento Mobile', totalAulas: 20, presencas: 19, faltas: 1, taxa: 95.0, status: 'Aprovado' },
-            { ra: '567891', name: 'Isabela Rocha Costa', discipline: 'Desenvolvimento Mobile', totalAulas: 20, presencas: 17, faltas: 3, taxa: 85.0, status: 'Aprovado' },
-            { ra: '567892', name: 'Marcos Ferreira Lima', discipline: 'Desenvolvimento Mobile', totalAulas: 20, presencas: 14, faltas: 6, taxa: 70.0, status: 'Alerta' },
-            { ra: '567893', name: 'Larissa Silva Santos', discipline: 'Desenvolvimento Mobile', totalAulas: 20, presencas: 18, faltas: 2, taxa: 90.0, status: 'Aprovado' },
-            { ra: '567894', name: 'Gustavo Costa Oliveira', discipline: 'Desenvolvimento Mobile', totalAulas: 20, presencas: 16, faltas: 4, taxa: 80.0, status: 'Aprovado' }
-        ];
-
-        document.addEventListener('DOMContentLoaded', function () {
-            // Elementos do DOM
-            const studentSearch = document.getElementById('student-search');
-            const studentsTbody = document.getElementById('students-tbody');
-            const studentInfo = document.getElementById('student-info');
-            const noResults = document.getElementById('no-results');
-
-            // Controle de Menu em dispositivos móveis
-            const menuToggle = document.querySelector('.header-menu-toggle');
-            const sidebar = document.querySelector('.sidebar');
-
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function () {
-                    sidebar.classList.toggle('active');
-                });
-            }
-
-            // Carregar todos os alunos na inicialização
-            loadAllStudents();
-
-            // Busca por RA
-            studentSearch.addEventListener('input', function () {
-                const searchRA = this.value.trim();
-
-                if (searchRA.length >= 3) {
-                    searchStudent(searchRA);
-                } else {
-                    studentInfo.style.display = 'none';
-                    noResults.classList.remove('active');
-                }
-            });
-
-            // Função para carregar todos os alunos
-            function loadAllStudents() {
-                studentsTbody.innerHTML = '';
-
-                allStudentsData.forEach(student => {
-                    const row = document.createElement('tr');
-
-                    const statusClass = getStatusClass(student.status);
-
-                    row.innerHTML = `
-                        <td>${student.ra}</td>
-                        <td>${student.name}</td>
-                        <td>${student.discipline}</td>
-                        <td>${student.totalAulas}</td>
-                        <td>${student.presencas}</td>
-                        <td>${student.faltas}</td>
-                        <td>${student.taxa.toFixed(1)}%</td>
-                        <td><span class="status ${statusClass}">${student.status}</span></td>
-                    `;
-
-                    studentsTbody.appendChild(row);
-                });
-            }
-
-            // Função para buscar estudante
-            function searchStudent(searchRA) {
-                const foundStudent = allStudentsData.find(student =>
-                    student.ra.includes(searchRA)
-                );
-
-                if (foundStudent) {
-                    // Exibir informações do estudante
-                    document.getElementById('student-name').textContent = foundStudent.name;
-                    document.getElementById('student-ra').textContent = foundStudent.ra;
-                    document.getElementById('student-discipline').textContent = foundStudent.discipline;
-                    document.getElementById('student-total').textContent = foundStudent.totalAulas;
-                    document.getElementById('student-presences').textContent = foundStudent.presencas;
-                    document.getElementById('student-absences').textContent = foundStudent.faltas;
-                    document.getElementById('student-attendance').textContent = foundStudent.taxa.toFixed(1) + '%';
-
-                    const statusElement = document.getElementById('student-status');
-                    statusElement.textContent = foundStudent.status;
-                    statusElement.className = 'status ' + getStatusClass(foundStudent.status);
-
-                    studentInfo.style.display = 'block';
-                    noResults.classList.remove('active');
-                } else {
-                    // Não encontrado
-                    studentInfo.style.display = 'none';
-                    noResults.classList.add('active');
-                }
-            }
-
-            // Função para obter classe CSS baseada no status
-            function getStatusClass(status) {
-                switch (status) {
-                    case 'Aprovado':
-                        return 'status-present';
-                    case 'Alerta':
-                        return 'status-warning';
-                    case 'Reprovado':
-                        return 'status-danger';
-                    default:
-                        return 'status-present';
-                }
-            }
-        });
-    </script>
+    <script src="relatorio.js"></script>
 </body>
 
 </html>

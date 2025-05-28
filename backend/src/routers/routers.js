@@ -41,6 +41,7 @@ router.get('/aluno/resumo/:ra', authorize(['aluno']), studentsControllers.getRes
 
 router.get('/professor/aulas/:rm', authorize(['professor']), teachersControllers.getAulas);
 router.get('/professor/resumo/:rm', authorize(['professor']), teachersControllers.getResumo);
+router.get('/frequencia/professor/:rm/resumo', authorize(['professor', 'admin']), frequenciaController.getResumoFrequenciaProfessor);
 
 
 module.exports = router;
