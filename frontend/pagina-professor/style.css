@@ -1116,3 +1116,8 @@ body {
 	height: 20px;
 	border: 3px
 }
+
+/* Exibir o qrcode apenas qnd clicar no botão */
+.hidden {
+    display: none !important;
+}

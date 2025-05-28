@@ -78,14 +78,6 @@
                     <div class="subject-selection">
                         <select id="subject-select" onchange="showGenerateButton()">
                             <option value="">Selecione uma disciplina...</option>
-                            <option value="algoritmos">Algoritmos e Programação - ALG001</option>
-                            <option value="matematica">Matemática Discreta - MAT202</option>
-                            <option value="banco-dados">Banco de Dados - BDA305</option>
-                            <option value="estrutura-dados">Estrutura de Dados - EDD203</option>
-                            <option value="engenharia-software">Engenharia de Software - ENG401</option>
-                            <option value="redes">Redes de Computadores - RED501</option>
-                            <option value="sistemas-operacionais">Sistemas Operacionais - SOP301</option>
-                            <option value="interface-humano">Interface Humano-Computador - IHC402</option>
                         </select>
                     </div>
                 </div>
@@ -114,7 +106,7 @@
                         <div class="qr-info">
                             <div class="subject-info">
                                 <h3 id="selected-subject">Disciplina Selecionada</h3>
-                                <p><strong>Professor:</strong> Mateus Silva</p>
+                                <p><strong>Professor:</strong> <span id="professor-nome">...</span></p>
                                 <p><strong>Data/Hora:</strong> <span id="session-datetime"></span></p>
                                 <p><strong>Válido por:</strong> <span class="validity-time">15 minutos</span></p>
                                 <p><strong>Status:</strong> <span style="color: #28a745; font-weight: 600;">Ativo</span>
@@ -188,6 +180,11 @@
 
             function generateQRCode() {
                 const select = document.getElementById('subject-select');
+                if (!select.value) {
+                    alert('Por favor, selecione uma disciplina antes de gerar o QR Code.');
+                    return;
+                }
+
                 const selectedOption = select.options[select.selectedIndex];
                 const subjectName = selectedOption.text;
                 const generateBtn = document.getElementById('generate-btn');
@@ -249,6 +246,7 @@
             }, 60000);
         </script>
     </div>
+    <script src="qrcode.js"></script>
 </body>
 
 </html>
