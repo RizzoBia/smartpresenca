@@ -1,7 +1,5 @@
-/* Google Fonts - Poppins for clean, modern look */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* CSS Reset and Base Styles */
 
 * {
     margin: 0;
@@ -23,7 +21,6 @@ body {
     height: 100vh;
 }
 
-/* Header Styles */
 .header {
     display: flex;
     justify-content: space-between;
@@ -136,13 +133,11 @@ body {
 }
 
 
-/* Page Layout */
 .page-wrapper {
     display: flex;
     height: calc(100vh - 60px);
 }
 
-/* Sidebar */
 .sidebar {
     width: 220px;
     background-color: #004884;
@@ -175,12 +170,10 @@ body {
     color: white;
 }
 
-/* Ícones do menu */
 .nav-item i {
     font-size: 1.1rem;
 }
 
-/* Main content */
 .main-content {
     flex-grow: 1;
     padding: 40px;
@@ -211,7 +204,6 @@ body {
 }
 
 
-/* Cards */
 .card {
     background-color: white;
     border-radius: 12px;
@@ -315,7 +307,6 @@ body {
 
 .frequencia-table th {
     background-color: #004884;
-    /* mesma cor da sidebar para manter padrão */
     color: white;
     font-weight: 600;
 }
@@ -432,7 +423,6 @@ body {
 }
 
 /* Style da página Sobre */
-/* Sobre Container - Novo Design */
 .sobre-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -478,7 +468,6 @@ body {
 .sobre-container p {
     font-size: 17px;
     line-height: 1.5;
-    /* para facilitar a leitura */
     color: #444;
     margin-bottom: 25px;
     text-align: justify;
