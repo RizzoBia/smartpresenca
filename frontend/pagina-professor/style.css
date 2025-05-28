@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* CSS Reset and Base Styles */
 * {
 	margin: 0;
 	padding: 0;
@@ -9,7 +8,6 @@
 
 body {
 	font-family: 'Poppins', sans-serif;
-	/* ALTERADO: fundo mudado de azul para roxo/violeta */
 	color: #333;
 	line-height: 1.6;
 	min-height: 100vh;
@@ -21,7 +19,6 @@ body {
 	min-height: 100vh;
 }
 
-/* Header Styles */
 .header {
 	display: flex;
 	justify-content: space-between;
@@ -132,13 +129,11 @@ body {
 	cursor: pointer;
 }
 
-/* Page Layout */
 .page-wrapper {
 	display: flex;
 	height: calc(100vh - 60px);
 }
 
-/* Sidebar */
 .sidebar {
 	width: 220px;
 	background-color: #004884;
@@ -175,7 +170,6 @@ body {
 	font-size: 1.1rem;
 }
 
-/* Main content */
 .main-content {
 	flex-grow: 1;
 	padding: 40px;
@@ -199,7 +193,6 @@ body {
 	gap: 40px;
 }
 
-/* Sobre Container - Novo Design */
 .sobre-container {
 	max-width: 1000px;
 	margin: 0 auto;
@@ -281,7 +274,6 @@ body {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Animações */
 @keyframes fadeInUp {
 	from {
 		opacity: 0;
@@ -408,7 +400,6 @@ body {
 	font-size: 1rem;
 }
 
-/* Colored borders for specific cards */
 .card.presencas {
 	border-left: 6px solid #4caf50;
 }
@@ -425,7 +416,6 @@ body {
 	border-left: 6px solid #f44336;
 }
 
-/* Step Container */
 .step-container {
 	background: linear-gradient(135deg, #ffffff, #f8f9fa);
 	border-radius: 20px;
@@ -471,7 +461,6 @@ body {
 	color: #004884;
 }
 
-/* Search Section */
 .search-box {
 	position: relative;
 	margin-bottom: 20px;
@@ -500,7 +489,6 @@ body {
 	border-color: #004884;
 }
 
-/* Student Info Card */
 .student-info {
 	background-color: #f8f9fc;
 	border: 2px solid #004884;
@@ -524,7 +512,6 @@ body {
 	color: #333;
 }
 
-/* No Results */
 .no-results {
 	text-align: center;
 	padding: 30px;
@@ -547,7 +534,6 @@ body {
 	margin-bottom: 10px;
 }
 
-/* Student List Table */
 .student-list-table {
 	width: 100%;
 	border-collapse: collapse;
@@ -578,7 +564,6 @@ body {
 	border-bottom: none;
 }
 
-/* Status Badges */
 .status {
 	padding: 6px 12px;
 	border-radius: 20px;
@@ -602,7 +587,6 @@ body {
 	color: #721c24;
 }
 
-/* Summary Stats */
 .summary-stats {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -631,7 +615,6 @@ body {
 	font-weight: 500;
 }
 
-/* Subject Selection */
 .subject-selection select {
 	width: 100%;
 	max-width: 500px;
@@ -652,7 +635,6 @@ body {
 	box-shadow: 0 0 0 3px rgba(0, 72, 132, 0.1);
 }
 
-/* Generate Button */
 .generate-qr-btn {
 	background: linear-gradient(135deg, #004884);
 	color: white;
@@ -678,7 +660,6 @@ body {
 	transform: translateY(-1px);
 }
 
-/* QR Code Display */
 .qr-result {
 	display: flex;
 	gap: 30px;
@@ -746,7 +727,6 @@ body {
 	letter-spacing: 3px;
 }
 
-/* Action Buttons */
 .qr-actions {
 	display: flex;
 	gap: 15px;
@@ -788,7 +768,6 @@ body {
 	box-shadow: 0 6px 20px rgba(111, 66, 193, 0.3);
 }
 
-/* Instructions */
 .instructions {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1109,7 +1088,6 @@ body {
 	}
 }
 
-/* Loading Animation */
 .loading {
 	display: inline-block;
 	width: 20px;
@@ -1119,5 +1097,5 @@ body {
 
 /* Exibir o qrcode apenas qnd clicar no botão */
 .hidden {
-    display: none !important;
+	display: none !important;
 }

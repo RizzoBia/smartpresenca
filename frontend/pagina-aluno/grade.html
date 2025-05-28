@@ -37,7 +37,6 @@
         </header>
 
         <div class="page-wrapper">
-            <!-- Sidebar -->
             <nav class="sidebar" aria-label="Menu lateral">
                 <div class="sidebar-nav">
                     <a href="index.html" class="nav-item">
@@ -89,7 +88,6 @@
                             <td class="time-column">19:40 - 22:30</td>
                             <td class="subject-column">
                                 <div class="subject-name">Desenvolvimento de Interfaces de Usuário para Web</div>
-                                <!-- <div class="subject-code">POO001 - Turma A</div> -->
                             </td>
                             <td class="location-column">
                                 <div class="location-info">
@@ -103,7 +101,6 @@
                             <td class="time-column">19:40 - 22:30</td>
                             <td class="subject-column">
                                 <div class="subject-name">Computação em Nuvem</div>
-                                <!-- <div class="subject-code">BD001 - Turma B</div> -->
                             </td>
                             <td class="location-column">
                                 <div class="location-info">
@@ -117,7 +114,6 @@
                             <td class="time-column">19:40 - 22:30</td>
                             <td class="subject-column">
                                 <div class="subject-name">Tecnologias para Desenvolvimento Web</div>
-                                <!-- <div class="subject-code">SO001 - Turma A</div> -->
                             </td>
                             <td class="location-column">
                                 <div class="location-info">
@@ -131,7 +127,6 @@
                             <td class="time-column">19:40 - 22:30</td>
                             <td class="subject-column">
                                 <div class="subject-name">Integração de Dados</div>
-                                <!-- <div class="subject-code">ED001 - Turma C</div> -->
                             </td>
                             <td class="location-column">
                                 <div class="location-info">
@@ -145,7 +140,6 @@
                             <td class="time-column">19:40 - 22:30</td>
                             <td class="subject-column">
                                 <div class="subject-name">Projeto Integrado Desenvolvimento de Aplicação Web</div>
-                                <!-- <div class="subject-code">PW001 - Turma A</div> -->
                             </td>
                             <td class="location-column">
                                 <div class="location-info">
@@ -171,7 +165,6 @@
             });
         }
 
-        // Get today's class
         function getTodayClass() {
             const diasSemana = [
                 "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira",
@@ -181,33 +174,28 @@
             const classes = {
                 1: {
                     subject: "Desenvolvimento de Interfaces de Usuário para Web",
-                    // code: "POO001 - Turma A",
                     location: "Lab 01"
                 },
                 2: {
                     subject: "Computação em Nuvem",
-                    // code: "BD001 - Turma B",
                     location: "Lab 01"
                 },
                 3: {
                     subject: "Tecnologias para Desenvolvimento Webs",
-                    // code: "SO001 - Turma A",
                     location: "Lab 01"
                 },
                 4: {
                     subject: "Integração de Dados",
-                    // code: "ED001 - Turma C",
                     location: "Lab 01"
                 },
                 5: {
                     subject: "Projeto Integrado Desenvolvimento de Aplicação Web",
-                    // code: "PW001 - Turma A",
                     location: "Lab 01"
                 }
             };
 
             const hoje = new Date();
-            const diaSemana = hoje.getDay(); // 0 = Sunday, 1 = Monday, etc.
+            const diaSemana = hoje.getDay();
 
             const dia = hoje.getDate();
             const mes = hoje.getMonth();
@@ -222,17 +210,14 @@
             const todayClass = document.getElementById('today-class');
 
             if (diaSemana > 0 && diaSemana < 6) {
-                // It's a weekday
                 const todayClassInfo = classes[diaSemana];
 
-                // Set text for today's class
                 todayClass.innerHTML = `
                     <strong>${diasSemana[diaSemana]}, ${dia} de ${mesesAno[mes]} de ${ano}</strong><br>
                     ${todayClassInfo.subject} <br>
                     ${todayClassInfo.location} | 19:40 - 22:30
                 `;
 
-                // Highlight current day in table
                 const rows = document.querySelectorAll('#schedule-body tr');
                 rows.forEach(row => {
                     if (parseInt(row.getAttribute('data-day')) === diaSemana) {
@@ -251,7 +236,6 @@
             }
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function () {
             getTodayClass();
         });
