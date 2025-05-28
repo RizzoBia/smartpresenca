@@ -605,7 +605,6 @@ body {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilização Página Grade Horária */
 /* Alerta do dia atual */
 .today-alert {
     background: linear-gradient(135deg, #4caf50, #45a049);
@@ -643,8 +642,8 @@ body {
 
 /* Estilo para fim de semana */
 .today-alert.weekend {
-    background: linear-gradient(135deg, #004884);
-    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+    background: linear-gradient(135deg, #004884, #0056a3);
+    box-shadow: 0 4px 15px rgba(0, 72, 132, 0.3);
 }
 
 /* Tabela da grade horária */
@@ -659,7 +658,7 @@ body {
 }
 
 .schedule-table thead {
-    background: linear-gradient(135deg, #FAC20D);
+    background: linear-gradient(135deg, #FAC20D, #e6af0b);
     color: #ffffff;
 }
 
@@ -679,7 +678,6 @@ body {
 
 .schedule-table tbody tr:hover {
     background-color: #f8f9fc;
-    transform: scale(1.01);
 }
 
 .schedule-table tbody tr:last-child {
@@ -723,15 +721,6 @@ body {
     margin-bottom: 5px;
 }
 
-.subject-code {
-    font-size: 0.9rem;
-    color: #666;
-    background-color: #e3f2fd;
-    padding: 4px 10px;
-    border-radius: 20px;
-    display: inline-block;
-}
-
 /* Coluna de localização */
 .location-column {
     width: 25%;
@@ -752,37 +741,82 @@ body {
 
 /* Destaque para o dia atual */
 .schedule-table tbody tr.current-day {
-    background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+    background: linear-gradient(135deg, #e8f5e8, #f0f8f0) !important;
     border-left: 5px solid #4caf50;
     position: relative;
 }
 
-.schedule-table tbody tr.current-day::before {
+.schedule-table tbody tr.current-day::after {
     content: "HOJE";
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
     background-color: #4caf50;
     color: white;
-    padding: 4px 12px;
+    padding: 6px 15px;
     border-radius: 20px;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
 
 .schedule-table tbody tr.current-day .day-column {
-    color: #2e7d32;
+    color: #2e7d32 !important;
     font-weight: 700;
 }
 
 .schedule-table tbody tr.current-day .subject-name {
-    color: #2e7d32;
+    color: #2e7d32 !important;
+    font-weight: 700;
 }
 
-/* Loading Animation */
+.schedule-table tbody tr.current-day .time-column {
+    background-color: #e8f5e8 !important;
+    color: #2e7d32 !important;
+    font-weight: 600;
+}
+
+/* Responsividade */
+.header-menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header-menu-toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        height: 100vh;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .schedule-table {
+        font-size: 0.9rem;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding: 12px 8px;
+    }
+}
+
 .loading {
     display: inline-block;
     width: 20px;
@@ -790,8 +824,6 @@ body {
     border: 3px
 }
 
-/* Cards Página Frequencia */
-/* Cards de resumo */
 .summary-cards {
     display: flex;
     gap: 20px;
