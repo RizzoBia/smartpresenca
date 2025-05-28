@@ -1,97 +1,83 @@
 const API_URL = 'http://localhost:4040';
 
-async function carregarResumoProfessor() {
-    const token = localStorage.getItem('token');
-    const rm = localStorage.getItem('rm');
+document.addEventListener('DOMContentLoaded', function () {
+    const professor = JSON.parse(localStorage.getItem('professor'));
 
-    if (!token || !rm) {
-        console.warn('Usuário não autenticado!');
+    if (!professor) {
+        alert('Professor não autenticado.');
+        window.location.href = '/login.html';
         return;
     }
 
-    try {
-        const response = await fetch(`${API_URL}/professor/resumo/${rm}`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
+    // Atualiza info do usuário
+    const userInfoSpan = document.querySelector('.user-info span');
+    userInfoSpan.textContent = `Prof. ${professor.nome}`;
 
-        if (!response.ok) {
-            throw new Error('Erro ao buscar resumo do professor');
-        }
-
-        const data = await response.json();
-
-        // Atualiza nome do usuário
-        document.querySelectorAll('.user-name').forEach(el => {
-            el.innerText = data.nome || 'Professor';
-        });
-
-        // Atualiza curso
-        document.querySelectorAll('.user-curso').forEach(el => {
-            el.innerText = data.curso || 'Curso';
-        });
-
-    } catch (err) {
-        console.error('Erro ao carregar resumo:', err);
-    }
-}
-
-async function verificarAulaDoDia() {
     const token = localStorage.getItem('token');
-    const rm = localStorage.getItem('rm');
+    const rm = professor.rm;
 
-    if (!token || !rm) {
-        console.warn('Usuário não autenticado!');
-        return;
-    }
+    // Atualiza a data
+    const hoje = new Date();
+    const diaSemana = hoje.getDay(); // 0 = Domingo ... 6 = Sábado
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    const ano = hoje.getFullYear();
+    const dataAtual = `${dia}/${mes}/${ano}`;
 
-    try {
-        const response = await fetch(`${API_URL}/professor/aulas/${rm}`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
+    document.querySelectorAll('.data-atual').forEach(el => {
+        el.innerText = dataAtual;
+    });
 
-        if (!response.ok) {
-            throw new Error('Erro ao buscar aulas do professor');
+    console.log('Hoje é dia: ', diaSemana);
+
+    // Verifica aula do dia
+    fetch(`${API_URL}/professor/aulas/${rm}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
         }
+    })
+        .then(res => {
+            if (!res.ok) throw new Error('Erro ao buscar aulas do professor');
+            return res.json();
+        })
+        .then(aulas => {
+            console.log('Aulas recebidas: ', aulas);
 
-        const aulas = await response.json();
+            const aulasHoje = aulas.filter(aula => String(aula.dia_semana_num) === String(diaSemana));
 
-        const hoje = new Date();
-        const diaSemana = hoje.getDay(); // 0 = Domingo, 1 = Segunda...
+            console.log('Aulas de hoje: ', aulasHoje);
+            
+//            Atualiza o status da aula
+            let statusTexto = '';
+            if (aulasHoje.length > 0) {
+                statusTexto = aulasHoje.map(a => {
+                    const inicio = a.hora_inicio.slice(0, 5);
+                    const fim = a.hora_fim.slice(0, 5);
+                    return `${a.disciplina} (${inicio} - ${fim})`;
+                }).join(', ');
 
-        const dia = String(hoje.getDate()).padStart(2, '0');
-        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-        const ano = hoje.getFullYear();
+            } else {
+                statusTexto = 'Nenhuma aula no momento';
+            }
 
-        const dataAtual = `${dia}/${mes}/${ano}`;
-
-        // Atualiza a data
-        document.querySelectorAll('.data-atual').forEach(el => {
-            el.innerText = dataAtual;
+            document.querySelectorAll('.status-aula').forEach(el => {
+                el.innerText = statusTexto;
+            });
+        })
+        .catch(err => {
+            console.error('Erro ao verificar aula do dia:', err);
+            document.querySelectorAll('.status-aula').forEach(el => {
+                el.innerText = 'Erro ao carregar aulas';
+            });
         });
 
-        // Verifica se tem aula
-        const aulasHoje = aulas.filter(aula => Number(aula.dia_semana) === diaSemana);
+    // Controle de menu
+    const menuToggle = document.querySelector('.header-menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
 
-        let statusTexto = '';
-        if (aulasHoje.length > 0) {
-            statusTexto = aulasHoje.map(a => `${a.disciplina} (${a.hora_inicio} - ${a.hora_fim})`).join(', ');
-        } else {
-            statusTexto = 'Nenhuma aula no momento';
-        }
-
-        // Atualiza status
-        document.querySelectorAll('.status-aula').forEach(el => {
-            el.innerText = statusTexto;
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function () {
+            sidebar.classList.toggle('active');
         });
-
-    } catch (err) {
-        console.error('Erro ao verificar aula do dia:', err);
     }
-}
-
-
-// Executar as funções ao carregar a página
-window.onload = function () {
-    carregarResumoProfessor();
-    verificarAulaDoDia();
-};
+});
