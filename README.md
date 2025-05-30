@@ -36,9 +36,8 @@ O projeto contempla a criação de um sistema com dois perfis principais: **alun
 - Edição de presenças dos alunos.
 
 ### 👨‍🎓 Aluno (login por RA)
-- Leitura do QR Code por meio de câmera (ESP32-CAM).
-- Marcação automática da presença ao validar QR.
-- Acesso apenas leitura às suas presenças.
+- Acesso à Grade Horária do semestre.
+- Visualização de suas presenças e faltas.
 
 ---
 
@@ -69,7 +68,7 @@ DB_NAME=smartpresenca
 JWT_SECRET=sua_chave_secreta
 ```
 
-5. 4. **Inicie o servidor:**
+5. **Inicie o servidor:**
 ```bash
 npm start
 ```
