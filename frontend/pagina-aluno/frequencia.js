@@ -11,8 +11,8 @@ async function carregarFrequencia() {
             el.innerText = nome;
         });
 
-        const totalAulas = dados.reduce((sum, item) => sum + Number(item.total_registros), 0);
-        const totalPresencas = dados.reduce((sum, item) => sum + Number(item.presencas), 0);
+        const totalAulas = dados.reduce((sum, item) => sum + Number(item.total_registros) * 3, 0);
+        const totalPresencas = dados.reduce((sum, item) => sum + Number(item.presencas) * 3, 0);
         const totalFaltas = dados.reduce((sum, item) => sum + Number(item.faltas) * 3, 0);
 
 
@@ -32,25 +32,34 @@ async function carregarFrequencia() {
         overview.innerHTML = '';
 
         dados.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'subject-card';
-            card.innerHTML = `
-                <div class="subject-header">
-                    <div class="subject-title">${item.disciplina}</div>
-                    <div class="status ${item.percentual_presenca >= 75 ? 'status-present' : 'status-warning'}">
-                        ${item.percentual_presenca}% de presença
-                    </div>
+        const totalAulasBlocos = Number(item.total_registros) * 3;
+        const presencasBlocos = Number(item.presencas) * 3;
+        const faltasBlocos = Number(item.faltas) * 3;
+        const percentual = totalAulasBlocos > 0
+            ? ((presencasBlocos / totalAulasBlocos) * 100).toFixed(1)
+            : '0.0';
+
+        const card = document.createElement('div');
+        card.className = 'subject-card';
+        card.innerHTML = `
+            <div class="subject-header">
+                <div class="subject-title">${item.disciplina}</div>
+                <div class="status ${percentual >= 75 ? 'status-present' : 'status-warning'}">
+                    ${percentual}% DE PRESENÇA
                 </div>
-                <div class="attendance-bar">
-                    <div class="attendance-fill" style="width: ${item.percentual_presenca}%"></div>
-                </div>
-                <div class="attendance-details">
-                    <span>${item.presencas}/${item.total_registros} aulas</span>
-                    <span>${item.faltas * 3} faltas</span>
-                </div>
-            `;
-            overview.appendChild(card);
-        });
+            </div>
+            <div class="attendance-bar ${percentual >= 75 ? '' : 'attendance-warning'}">
+                <div class="attendance-fill" style="width: ${percentual}%"></div>
+            </div>
+            <div class="attendance-details">
+                <span>${presencasBlocos}/${totalAulasBlocos} aulas</span>
+                <span>${faltasBlocos} faltas</span>
+            </div>
+        `;
+        overview.appendChild(card);
+    });
+
+
 
         const tbody = document.querySelector('#subjects tbody');
 
