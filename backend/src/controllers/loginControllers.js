@@ -30,14 +30,12 @@ async function login(req, res) {
     let role = null;
     let userId = null;
 
-    // 1. Tenta como admin
     user = await knex('admins').where({ username: identifier }).first();
     if (user) {
         role = ROLES.ADMIN;
         userId = user.id_admin; // ajuste conforme seu campo real
     }
 
-    // 2. Se não achou, tenta como professor
     if (!user) {
         user = await findProfessorByRM(identifier);
         if (user) {
@@ -46,7 +44,6 @@ async function login(req, res) {
         }
     }
 
-    // 3. Se não achou, tenta como aluno
     if (!user) {
         user = await findAlunoByRA(identifier);
         if (user) {
@@ -55,18 +52,15 @@ async function login(req, res) {
         }
     }
 
-    // 4. Se ainda não achou → erro
     if (!user) {
         return res.status(400).json({ message: 'Usuário não encontrado' });
     }
 
-    // 5. Confere a senha
     const match = await comparePassword(password, user.senha);
     if (!match) {
         return res.status(400).json({ message: 'Senha incorreta' });
     }
 
-    // 6. Gera o token
     const tokenPayload = {
         id: userId,
         role

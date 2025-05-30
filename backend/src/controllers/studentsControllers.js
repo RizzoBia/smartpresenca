@@ -71,6 +71,15 @@ class StudentsControllers {
         }
     }
 
+    async getAulas(req, res) {
+        const { ra } = req.params;
+        try {
+            const aulas = await knex('view_aulas_aluno').where({ ra_aluno: ra });
+            res.json(aulas);
+        } catch (err) {
+            res.status(500).json({ message: 'Erro ao buscar aulas do aluno', error: err.message });
+        }
+    }
 
 }
 
