@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 discipline: item.disciplina,
                 totalAulas: item.total_aulas,
                 presencas: item.presencas,
-                faltas: item.faltas,
+                faltas: item.faltas * 3,
                 taxa: parseFloat(item.taxa_presenca),
                 status: item.status
             }));

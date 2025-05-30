@@ -60,7 +60,7 @@ function preencherGrade(aulas) {
             <td class="location-column">
                 <div class="location-info">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>${aula.sala} - Bloco ${aula.bloco} (${aula.campus})</span>
+                    <span>${aula.sala} - ${aula.bloco} (${aula.campus})</span>
                 </div>
             </td>
         `;

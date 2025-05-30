@@ -13,7 +13,7 @@ async function carregarFrequencia() {
 
         const totalAulas = dados.reduce((sum, item) => sum + Number(item.total_registros), 0);
         const totalPresencas = dados.reduce((sum, item) => sum + Number(item.presencas), 0);
-        const totalFaltas = dados.reduce((sum, item) => sum + Number(item.faltas), 0);
+        const totalFaltas = dados.reduce((sum, item) => sum + Number(item.faltas) * 3, 0);
 
 
         let taxa = 0;
@@ -46,7 +46,7 @@ async function carregarFrequencia() {
                 </div>
                 <div class="attendance-details">
                     <span>${item.presencas}/${item.total_registros} aulas</span>
-                    <span>${item.faltas} faltas</span>
+                    <span>${item.faltas * 3} faltas</span>
                 </div>
             `;
             overview.appendChild(card);
@@ -63,7 +63,7 @@ async function carregarFrequencia() {
             <td>${item.disciplina}</td>
             <td>${item.total_registros}</td>
             <td>${item.presencas}</td>
-            <td>${item.faltas}</td>
+            <td>${item.faltas * 3}</td>
             <td>${item.percentual_presenca}%</td>
             <td>
                 <span class="status ${item.percentual_presenca >= 75 ? 'status-present' : 'status-warning'}">

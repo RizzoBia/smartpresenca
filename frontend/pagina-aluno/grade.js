@@ -61,7 +61,7 @@ function preencherGrade(aulas) {
             <td>${aula.dia_semana}</td>
             <td>${aula.hora_inicio.slice(0,5)} - ${aula.hora_fim.slice(0,5)}</td>
             <td>${aula.nome_disciplina} - ${aula.nome_turma}</td>
-            <td>${aula.sala} - Bloco ${aula.bloco} (${aula.campus})</td>
+            <td>${aula.sala} - ${aula.bloco} (${aula.campus})</td>
         `;
         tbody.appendChild(tr);
     });
