@@ -68,7 +68,14 @@ DB_NAME=smartpresenca
 JWT_SECRET=sua_chave_secreta
 ```
 
-5. **Inicie o servidor:**
+5. **Crie o banco de dados básico utilizado para esse projeto:**
+```bash
+arquivo create.sql
+arquivo inserts.sql
+arquivo views.sql
+```
+
+6. **Inicie o servidor:**
 ```bash
 npm start
 ```
