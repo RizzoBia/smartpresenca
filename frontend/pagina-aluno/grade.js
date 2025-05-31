@@ -57,12 +57,26 @@ function preencherGrade(aulas) {
         const tr = document.createElement('tr');
         tr.setAttribute('data-day', aula.dia_semana_num);
 
+
         tr.innerHTML = `
-            <td>${aula.dia_semana}</td>
-            <td>${aula.hora_inicio.slice(0,5)} - ${aula.hora_fim.slice(0,5)}</td>
-            <td>${aula.nome_disciplina} - ${aula.nome_turma}</td>
-            <td>${aula.sala} - ${aula.bloco} (${aula.campus})</td>
+            <td class="day-column">${aula.dia_semana}</td>
+            <td class="time-column">${aula.hora_inicio.slice(0, 5)} - ${aula.hora_fim.slice(0, 5)}</td>
+            <td class="subject-column">
+                <div class="subject-name">${aula.nome_disciplina} - ${aula.nome_turma}</div>
+            </td>
+            <td class="location-column">
+            <div class="location-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    ${aula.sala} - ${aula.bloco}<br>
+                    (${aula.campus})
+                </div>
+            </div>
+        </td>
+
         `;
+
+
         tbody.appendChild(tr);
     });
 }
