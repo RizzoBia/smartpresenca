@@ -62,27 +62,43 @@
             </nav>
 
             <main class="main-content">
+                <!-- dentro de <main class="main-content"> -->
                 <div class="welcome-section">
                     <h1>Controle de Presenças</h1>
                     <div class="status-info">
-                        <p>Busque por <strong>RA específico</strong> ou visualize a lista completa de alunos com suas
-                            respectivas presenças.</p>
+                        <p>Pesquise por <strong>RA</strong> ou <strong>nome do aluno</strong> ou veja a lista completa da turma com suas
+                            presenças registradas.</p>
                     </div>
                 </div>
 
+                <!-- STEP 1: Selecionar Disciplina -->
                 <div class="step-container">
                     <div class="step-header">
                         <div class="step-number">1</div>
+                        <div class="step-title">Selecionar Disciplina</div>
+                    </div>
+                    <div class="subject-selection">
+                        <select id="subject-select-relatorio" onchange="onSelectDisciplina()">
+                            <option value="">Selecione uma disciplina...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Buscar RA -->
+                <div class="step-container hidden" id="ra-search-container">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
                         <div class="step-title">Buscar Aluno por RA</div>
                     </div>
 
                     <div class="search-section" id="search-section">
                         <div class="search-box">
                             <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Digite o RA do aluno (ex: 123456)" id="student-search"
+                            <input type="text" placeholder="Digite o RA ou nome do aluno" id="student-search"
                                 maxlength="8">
                         </div>
 
+                        <!-- Card do aluno -->
                         <div class="student-info" id="student-info" style="display: none;">
                             <h3 id="student-name">Nome do Aluno</h3>
                             <p><strong>RA:</strong> <span id="student-ra">ra</span></p>
@@ -92,10 +108,10 @@
                             <p><strong>Faltas:</strong> <span id="student-absences"></span></p>
                             <p><strong>Taxa de Presença:</strong> <span id="student-attendance"></span></p>
                             <p><strong>Status:</strong> <span id="student-status"
-                                    class="status status-present">Aprovado</span>
-                            </p>
+                                    class="status status-present">Aprovado</span></p>
                         </div>
 
+                        <!-- Aluno não encontrado -->
                         <div class="no-results" id="no-results">
                             <i class="fas fa-user-slash"></i>
                             <h3>Aluno não encontrado</h3>
@@ -104,9 +120,10 @@
                     </div>
                 </div>
 
-                <div class="step-container">
+                <!-- STEP 3: Tabela -->
+                <div class="step-container hidden" id="step-lista-alunos">
                     <div class="step-header">
-                        <div class="step-number">2</div>
+                        <div class="step-number">3</div>
                         <div class="step-title">Lista Completa de Alunos</div>
                     </div>
 
@@ -133,7 +150,9 @@
         </div>
     </div>
 
+
     <script src="relatorio.js"></script>
+
 </body>
 
 </html>

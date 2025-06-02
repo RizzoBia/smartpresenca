@@ -1,13 +1,13 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
-const knex = require('./src/config/data'); // Ajuste o caminho conforme a sua estrutura
+const knex = require('./src/config/data');
 
 async function hashSenhasProfessores() {
     try {
         const professores = await knex('Dim_professor').select('idprofessor', 'senha');
 
         for (let prof of professores) {
-            if (prof.senha && !prof.senha.startsWith('$2b$')) { // Evita hashear de novo se já for hash
+            if (prof.senha && !prof.senha.startsWith('$2b$')) { 
                 const hash = await bcrypt.hash(prof.senha, 10);
                 await knex('Dim_professor')
                     .where({ idprofessor: prof.idprofessor })
