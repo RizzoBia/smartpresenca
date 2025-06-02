@@ -999,17 +999,15 @@ body {
 
 .location-info {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 8px;
     font-weight: 500;
     color: #555;
-    gap: 4px;
 }
 
-
 .location-info i {
-	color: #ff9800;
-	font-size: 1.1rem;
+    color: #ff9800;
+    font-size: 1.1rem;
 }
 
 /* Destaque para o dia atual */
