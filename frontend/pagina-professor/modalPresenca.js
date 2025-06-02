@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
             presencasAluno.forEach(p => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-          <td>${new Date(p.data).toLocaleDateString()}</td>
-          <td>${getDiaSemana(p.data)}</td>
-          <td>${p.presente ? 'Presente' : 'Faltou'}</td>
-          <td>
-            <input type="checkbox" data-id="${p.id_presenca}" ${p.presente ? 'checked' : ''}>
-          </td>
-        `;
+                  <td>${new Date(p.data).toLocaleDateString()}</td>
+                  <td>${getDiaSemana(p.data)}</td>
+                  <td>${p.presente ? 'Presente' : 'Faltou'}</td>
+                  <td>
+                    <input type="checkbox" data-id="${p.id_presenca}" ${p.presente ? 'checked' : ''}>
+                  </td>
+                `;
                 modalBody.appendChild(tr);
             });
         } catch (err) {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     btnSalvar.addEventListener('click', async (e) => {
-        e.preventDefault(); // ✅ agora sim, sem warnings
+        e.preventDefault();
 
         const checkboxes = modalBody.querySelectorAll('input[type="checkbox"]');
         let sucesso = true;
@@ -79,13 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Presenças atualizadas com sucesso!');
             modal.classList.add('hidden');
 
-            // Atualiza o card do aluno dinamicamente
+            const alunoRA = modalRA.textContent;
+            const alunoNome = modalNome.textContent;
+            const disciplina = document.getElementById('student-discipline').textContent;
+
             const totalAulas = checkboxes.length;
             const totalBlocos = totalAulas * 3;
             const presencasBlocos = Array.from(checkboxes).filter(cb => cb.checked).length * 3;
             const faltasBlocos = totalBlocos - presencasBlocos;
             const taxa = totalBlocos > 0 ? (presencasBlocos / totalBlocos) * 100 : 0;
-
 
             document.getElementById('student-total').textContent = totalBlocos;
             document.getElementById('student-presences').textContent = presencasBlocos;
@@ -105,7 +107,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             statusElement.className = `status ${statusClass}`;
 
-            statusElement.className = `status ${statusClass}`;
+            // Atualiza a linha da tabela no Step 3 (lista completa)
+            const rows = document.querySelectorAll('#students-tbody tr');
+            rows.forEach(row => {
+                const tdRA = row.querySelector('td');
+                if (tdRA && tdRA.textContent.trim() === alunoRA) {
+                    row.innerHTML = `
+                      <td>${alunoRA}</td>
+                      <td>${alunoNome}</td>
+                      <td>${disciplina}</td>
+                      <td>${totalBlocos}</td>
+                      <td>${presencasBlocos}</td>
+                      <td>${faltasBlocos}</td>
+                      <td>${taxa.toFixed(1)}</td>
+                      <td><span class="status ${statusClass}">${status}</span></td>
+                    `;
+                }
+            });
         } else {
             alert('Erro ao atualizar algumas presenças.');
         }
