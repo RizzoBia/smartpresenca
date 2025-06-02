@@ -1,15 +1,17 @@
+const API_URL = 'http://localhost:4040';
+
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
     const ra = localStorage.getItem('ra');
 
     if (!token || !ra) {
         alert('Aluno não autenticado.');
-        window.location.href = '/login.html';
+        window.location.href = '../login.html';
         return;
     }
 
     try {
-        const resResumo = await fetch(`${API_URL}/aluno/resumo/${ra}`, {
+        const resResumo = await fetch(`${API_URL}/student/resumo/${ra}`, {
             headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const res = await fetch(`${API_URL}/aluno/aulas/${ra}`, {
+        const res = await fetch(`${API_URL}/student/aulas/${ra}`, {
             headers: { Authorization: `Bearer ${token}` }
         });
 

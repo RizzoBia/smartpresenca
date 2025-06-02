@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <div class="contener">
 
         <div class="logo">
-            <img src="assets/images/Unifeob.png" alt="Logo da Unifeob">
+            <img src="/assets/images/Unifeob.png" alt="Logo da Unifeob">
         </div>
 
         <div class="login">
@@ -85,14 +85,14 @@
                     }));
 
                     alert('Login realizado com sucesso!');
-                    window.location.href = 'frontend/pagina-professor/index.html';
+                    window.location.href = 'pagina-professor/index.html';
 
                 } else if (identifier.length === 8 && identifier.startsWith('2')) {
                     // Aluno
                     localStorage.setItem('ra', identifier);
 
                     alert('Login realizado com sucesso!');
-                    window.location.href = 'frontend/pagina-aluno/index.html';
+                    window.location.href = 'pagina-aluno/index.html';
 
                 } else {
                     alert('Identificador inválido ou não reconhecido!');
@@ -104,7 +104,6 @@
             }
         });
     </script>
-
 
 </body>
 
