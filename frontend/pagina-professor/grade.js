@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!professor) {
         alert('Professor não autenticado.');
-        window.location.href = '/login.html';
+        window.location.href = '../login.html';
         return;
     }
 
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const rm = professor.rm;
 
     try {
-        const res = await fetch(`${API_URL}/professor/aulas/${rm}`, {
+        const res = await fetch(`${API_URL}/teacher/aulas/${rm}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 

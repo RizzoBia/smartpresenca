@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!professor) {
         alert('Professor não autenticado.');
-        window.location.href = '/login.html';
+        window.location.href = '../login.html';
         return;
     }
 

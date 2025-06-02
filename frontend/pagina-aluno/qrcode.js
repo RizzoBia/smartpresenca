@@ -1,3 +1,7 @@
+if (typeof API_URL === 'undefined') {
+    var API_URL = 'http://localhost:4040';
+}
+
 async function carregarResumoQrcode() {
     const token = localStorage.getItem('token');
     const ra = localStorage.getItem('ra');
@@ -8,7 +12,7 @@ async function carregarResumoQrcode() {
     }
 
     try {
-        const response = await fetch(`${API_URL}/aluno/resumo/${ra}`, {
+        const response = await fetch(`${API_URL}/student/resumo/${ra}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 

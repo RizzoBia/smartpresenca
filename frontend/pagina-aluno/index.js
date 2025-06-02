@@ -1,3 +1,5 @@
+const API_URL = 'http://localhost:4040';
+
 async function carregarResumoIndex() {
     const token = localStorage.getItem('token');
     const ra = localStorage.getItem('ra');
@@ -8,7 +10,7 @@ async function carregarResumoIndex() {
     }
 
     try {
-        const response = await fetch(`${API_URL}/aluno/resumo/${ra}`, {
+        const response = await fetch(`${API_URL}/student/resumo/${ra}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 

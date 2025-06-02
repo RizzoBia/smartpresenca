@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const professor = JSON.parse(localStorage.getItem('professor'));
     if (!professor) {
         alert('Professor não autenticado.');
-        window.location.href = '/login.html';
+        window.location.href = '../login.html';
         return;
     }
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Buscar disciplinas do professor
     try {
-        const response = await fetch(`${API_URL}/professor/aulas/${rm}`, {
+        const response = await fetch(`${API_URL}/teacher/aulas/${rm}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 

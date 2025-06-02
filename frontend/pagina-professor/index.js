@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!professor) {
         alert('Professor não autenticado.');
-        window.location.href = '/login.html';
+        window.location.href = '../login.html';
         return;
     }
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('Hoje é dia: ', diaSemana);
 
     // Verifica aula do dia
-    fetch(`${API_URL}/professor/aulas/${rm}`, {
+    fetch(`${API_URL}/teacher/aulas/${rm}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!professor) {
         alert('Professor não autenticado.');
-        window.location.href = '/login.html';
+        window.location.href = '../login.html';
         return;
     }
 
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let allStudentsData = [];
 
-    fetch(`${API_URL}/frequencia/professor/${professor.rm}/resumo`, {
+    fetch(`${API_URL}/presenca/teacher/${professor.rm}/resumo`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

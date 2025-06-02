@@ -12,7 +12,7 @@ function authenticate(req, res, next) {
         if (err) {
             return res.status(403).json({ message: 'Token inválido.' });
         }
-        console.log('Token decodificado:', user);  // ✅ ADICIONE ISSO!
+        console.log('Token decodificado:', user);
         req.user = user;
         next();
     });
@@ -23,7 +23,7 @@ function authorize(roles = []) {
     return [
         authenticate,
         (req, res, next) => {
-            console.log('req.user:', req.user);  // ✅ ADICIONE ISSO!
+            console.log('req.user:', req.user);
             console.log('roles permitidas:', roles);
             if (!roles.includes(req.user.role)) {
                 return res.status(403).json({ message: 'Acesso negado para esta role.' });
