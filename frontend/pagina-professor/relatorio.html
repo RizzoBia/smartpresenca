@@ -66,7 +66,8 @@
                 <div class="welcome-section">
                     <h1>Controle de Presenças</h1>
                     <div class="status-info">
-                        <p>Pesquise por <strong>RA</strong> ou <strong>nome do aluno</strong> ou veja a lista completa da turma com suas
+                        <p>Pesquise por <strong>RA</strong> ou <strong>nome do aluno</strong> ou veja a lista completa
+                            da turma com suas
                             presenças registradas.</p>
                     </div>
                 </div>
@@ -109,6 +110,11 @@
                             <p><strong>Taxa de Presença:</strong> <span id="student-attendance"></span></p>
                             <p><strong>Status:</strong> <span id="student-status"
                                     class="status status-present">Aprovado</span></p>
+                            <div class="edit-presenca">
+                                <button id="edit-presence-btn" class="edit-btn">
+                                    <i class="fas fa-edit"></i> Editar Presença
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Aluno não encontrado -->
@@ -150,8 +156,31 @@
         </div>
     </div>
 
-
+    <div id="modal-editar-presencas" class="modal hidden">
+        <div class="modal-content">
+            <h2>Editar Presenças do Aluno</h2>
+            <p><strong id="modal-aluno-nome"></strong> | RA: <span id="modal-aluno-ra"></span></p>
+            <table class="modal-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Dia da Semana</th>
+                        <th>Status</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody id="modal-presencas-body">
+                    <!-- preenchido via JS -->
+                </tbody>
+            </table>
+            <div class="modal-actions">
+                <button id="btn-salvar-presencas" class="btn-confirm">Salvar</button>
+                <button id="btn-fechar-modal" class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
     <script src="relatorio.js"></script>
+    <script src="modalPresenca.js"></script>
 
 </body>
 
