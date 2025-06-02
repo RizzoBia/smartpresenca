@@ -132,11 +132,39 @@ async function getResumoFrequenciaProfessor(req, res) {
     }
 }
 
+// Retorna todas as presenças individuais com ID para edição
+async function getPresencasCompletasProfessor(req, res) {
+    const { rm } = req.params;
+
+    try {
+        const resultado = await knex('Fato_presenca as fp')
+            .join('Dim_aluno as a', 'fp.id_aluno', 'a.id_aluno')
+            .join('Dim_disciplina as d', 'fp.id_disciplina', 'd.iddisciplina')
+            .join('Dim_professor as p', 'fp.id_professor', 'p.idprofessor')
+            .where('p.rm', rm)
+            .select(
+                'fp.id_presenca',
+                'a.ra',
+                'a.nome as nome_aluno',
+                'd.nome as disciplina',
+                'fp.data',
+                'fp.presente'
+            )
+            .orderBy(['a.ra', 'fp.data']);
+
+        res.json(resultado);
+    } catch (err) {
+        console.error('Erro ao buscar presenças completas:', err);
+        res.status(500).json({ message: 'Erro ao buscar presenças completas' });
+    }
+}
+
 
 module.exports = {
     create,
     getByAluno,
     update,
     getFrequenciaByRA,
-    getResumoFrequenciaProfessor
+    getResumoFrequenciaProfessor,
+    getPresencasCompletasProfessor
 };

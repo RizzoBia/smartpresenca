@@ -31,6 +31,8 @@ router.put('/teacher/:rm', authorize(['admin']), teachersControllers.update);
 router.delete('/teacher/:rm', authorize(['admin']), teachersControllers.remove);
 router.get('/teacher/aulas/:rm', authorize(['professor']), teachersControllers.getAulas);
 router.get('/teacher/resumo/:rm', authorize(['professor']), teachersControllers.getResumo);
+router.get('/presenca/teacher/:rm/detalhes', authorize(['professor', 'admin']), presencaController.getPresencasCompletasProfessor);
+
 
 //   PRESENÇA  
 router.post('/presenca', authorize(['professor']), presencaController.create);

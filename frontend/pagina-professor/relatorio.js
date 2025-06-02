@@ -33,16 +33,27 @@ document.addEventListener('DOMContentLoaded', function () {
             return res.json();
         })
         .then(data => {
-            allStudentsData = data.map(item => ({
-                ra: item.ra,
-                name: item.nome_aluno,
-                discipline: item.disciplina,
-                totalAulas: item.total_aulas,
-                presencas: item.presencas,
-                faltas: item.faltas * 3,
-                taxa: parseFloat(item.taxa_presenca),
-                status: item.status
-            }));
+            allStudentsData = data.map(item => {
+                const totalBlocos = Number(item.total_aulas) * 3;
+                const presencasBlocos = Number(item.presencas) * 3;
+                const faltasBlocos = totalBlocos - presencasBlocos;
+                const taxa = totalBlocos > 0 ? (presencasBlocos / totalBlocos) * 100 : 0;
+
+                let status = 'APROVADO';
+                if (taxa < 75) status = 'REPROVADO';
+                else if (taxa < 80) status = 'ALERTA';
+
+                return {
+                    ra: item.ra,
+                    name: item.nome_aluno,
+                    discipline: item.disciplina,
+                    totalAulas: totalBlocos,
+                    presencas: presencasBlocos,
+                    faltas: faltasBlocos,
+                    taxa: parseFloat(taxa.toFixed(1)),
+                    status
+                };
+            });
 
             const disciplinasUnicas = [...new Set(allStudentsData.map(s => s.discipline))];
             disciplinasUnicas.forEach(disc => {
@@ -211,4 +222,16 @@ document.addEventListener('DOMContentLoaded', function () {
             sidebar.classList.toggle('active');
         });
     }
+    const editBtn = document.getElementById('edit-presence-btn');
+
+    if (editBtn) {
+        editBtn.addEventListener('click', () => {
+            const ra = document.getElementById('student-ra').textContent;
+            const nome = document.getElementById('student-name').textContent;
+            const disciplina = document.getElementById('student-discipline').textContent;
+
+            abrirModalPresencas(ra, disciplina, nome, professor.rm);
+        });
+    }
+
 });
